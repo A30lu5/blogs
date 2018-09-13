@@ -1,0 +1,91 @@
+noxCTF2018:
+  _meta_:
+    - max_score: 1000
+    - name: "noxCTF2018"
+  pwn:
+    - believeMe:
+      - score: 378 
+      - flag: 
+        -  random
+      - pushflag: ./pwn/believeMe/deploy/pushflag.sh
+      - env: ./pwn/believeMe/docker_env/docker-compose.yml
+      - attachment: ./pwn/believeMe/believeMe
+      - writeup-cn: 
+        - ./pwn/believeMe/writeup.md
+        - ./pwn/believeMe/exp.py
+        - ./pwn/believeMe/exp2.py
+      - writeup-en: 
+        - ./pwn/believeMe/exp.py
+        - ./pwn/believeMe/exp2.py
+      - description-cn: "What is going on here ?
+        I don't believe you...
+        you are crazy !!!
+
+        (No ASLR)"
+      - description-en: "What is going on here ?
+        I don't believe you...
+        you are crazy !!!
+
+        (No ASLR)"
+      - tag: fmt str
+      - hint: NULL
+      - origin: noxale
+    - TheNameCalculator:
+      - score: 537
+      - flag: 
+        -  random
+      - pushflag: ./pwn/TheNameCalculator/deploy/pushflag.sh
+      - env: ./pwn/TheNameCalculator/docker_env/docker-compose.yml
+      - attachment: ./pwn/TheNameCalculator/TheNameCalculator
+      - writeup-cn: 
+        - ./pwn/TheNameCalculator/writeup.md
+        - ./pwn/TheNameCalculator/exp.py
+      - writeup-en: 
+        - ./pwn/TheNameCalculator/exp.py
+      - description-cn: You can calculate almost everything, why not calculate names?
+      - description-en: You can calculate almost everything, why not calculate names?
+      - tag: fmt str
+      - hint: NULL
+      - origin: noxale
+    - GroceryList:
+      - score: 785
+      - flag: 
+        -  random
+      - pushflag: ./pwn/GroceryList/deploy/pushflag.sh
+      - env: ./pwn/GroceryList/docker_env/docker-compose.yml
+      - attachment: ./pwn/GroceryList/GroceryList
+      - writeup-cn: 
+        - ./pwn/GroceryList/writeup.md
+        - ./pwn/GroceryList/exp.py
+      - writeup-en: 
+        - ./pwn/GroceryList/exp.py
+      - description-cn: "I really hate it when I forget what I wanted to buy.
+        That's why I created the FASTEST Grocery List in the world.
+        Go check it out."
+      - description-en: "I really hate it when I forget what I wanted to buy.
+        That's why I created the FASTEST Grocery List in the world.
+        Go check it out."
+      - tag: 
+        - fastbin attack
+      - hint: NULL
+      - origin: noxale
+    - TheBlackCanary:
+      - score: 891
+      - flag: 
+        -  random
+      - pushflag: ./pwn/TheBlackCanary/deploy/pushflag.sh
+      - env: ./pwn/TheBlackCanary/docker_env/docker-compose.yml
+      - attachment: ./pwn/TheBlackCanary/TheBlackCanary
+      - writeup-cn: 
+        - ./pwn/TheBlackCanary/writeup.md
+        - ./pwn/TheBlackCanary/exp_0x10.py
+      - writeup-en: 
+        - ./pwn/TheBlackCanary/exp_0x10.py
+      - description-cn: "You are granted a rare opportunity to save the world.
+        Don't let it go to waste."
+      - description-en: "You are granted a rare opportunity to save the world.
+        Don't let it go to waste."
+      - tag: 
+        - bof
+      - hint: NULL
+      - origin: noxale
