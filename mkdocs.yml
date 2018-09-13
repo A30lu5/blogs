@@ -16,7 +16,12 @@ copyright: 'Copyright &copy; 2016 - 2018 DF Team'
 nav:
   - Introduction:
     - Getting Started: index.md
-    - CTF 历史: introduction/history.md
+    - noxCTF2018:
+      - Pwn:
+        - believe Me: noxCTF2018/pwn/believeMe/writeup.md
+        - The Name Calculator: noxCTF2018/pwn/TheNameCalculator/writeup.md
+        - Grocery List: noxCTF2018/pwn/GroceryList/writeup.md
+        - The Black Canary: noxCTF2018/pwn/TheBlackCanary/writeup.md
 
 # Theme
 theme:
