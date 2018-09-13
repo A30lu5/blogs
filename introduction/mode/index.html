@@ -1,0 +1,903 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DF Team CTF writeups">
+      
+      
+        <link rel="canonical" href="https://A30lu5.github.io/A30lu5/introduction/mode/">
+      
+      
+        <meta name="author" content="DF Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.3">
+    
+    
+      
+        <title>Mode - DF Team</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#-jeopardy" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://A30lu5.github.io/A30lu5/" title="DF Team" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                DF Team
+              </span>
+              <span class="md-header-nav__topic">
+                Mode
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/A30lu5.github.io/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/A30lu5.github.io
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="CTF Wiki" class="md-tabs__link">
+        CTF Wiki
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../cgc/" title="Introduction" class="md-tabs__link md-tabs__link--active">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </span>
+    DF Team
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/A30lu5.github.io/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/A30lu5.github.io
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="CTF Wiki" class="md-nav__link">
+      CTF Wiki
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cgc/" title="Cgc" class="md-nav__link">
+      Cgc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../content/" title="Content" class="md-nav__link">
+      Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../experience/" title="Experience" class="md-nav__link">
+      Experience
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../history/" title="History" class="md-nav__link">
+      History
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Mode
+      </label>
+    
+    <a href="./" title="Mode" class="md-nav__link md-nav__link--active">
+      Mode
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-jeopardy" title="解题模式 - Jeopardy" class="md-nav__link">
+    解题模式 - Jeopardy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-belluminar" title="战争分享模式 - Belluminar" class="md-nav__link">
+    战争分享模式 - Belluminar
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="赛制介绍" class="md-nav__link">
+    赛制介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="出题阶段" class="md-nav__link">
+    出题阶段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="提交部署" class="md-nav__link">
+    提交部署
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="解题竞技" class="md-nav__link">
+    解题竞技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="分享讨论" class="md-nav__link">
+    分享讨论
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="计分规则" class="md-nav__link">
+    计分规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="赛制总评" class="md-nav__link">
+    赛制总评
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-attack-defense" title="攻防模式 - Attack &amp; Defense" class="md-nav__link">
+    攻防模式 - Attack &amp; Defense
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="基本规则" class="md-nav__link">
+    基本规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="网络环境" class="md-nav__link">
+    网络环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamebox" title="访问 Gamebox" class="md-nav__link">
+    访问 Gamebox
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../resources/" title="Resources" class="md-nav__link">
+      Resources
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-jeopardy" title="解题模式 - Jeopardy" class="md-nav__link">
+    解题模式 - Jeopardy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-belluminar" title="战争分享模式 - Belluminar" class="md-nav__link">
+    战争分享模式 - Belluminar
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="赛制介绍" class="md-nav__link">
+    赛制介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="出题阶段" class="md-nav__link">
+    出题阶段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="提交部署" class="md-nav__link">
+    提交部署
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="解题竞技" class="md-nav__link">
+    解题竞技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="分享讨论" class="md-nav__link">
+    分享讨论
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="计分规则" class="md-nav__link">
+    计分规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="赛制总评" class="md-nav__link">
+    赛制总评
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-attack-defense" title="攻防模式 - Attack &amp; Defense" class="md-nav__link">
+    攻防模式 - Attack &amp; Defense
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="基本规则" class="md-nav__link">
+    基本规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="网络环境" class="md-nav__link">
+    网络环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamebox" title="访问 Gamebox" class="md-nav__link">
+    访问 Gamebox
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/A30lu5/A30lu5.github.io/blob/master/docs/introduction/mode.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Mode</h1>
+                
+                <h2 id="-jeopardy">解题模式 - Jeopardy<a class="headerlink" href="#-jeopardy" title="Permanent link">&para;</a></h2>
+<p>解题模式（Jeopardy）常见于线上选拔比赛。在解题模式 CTF 赛制中，参赛队伍可以通过互联网或者现场网络参与，参数队伍通过与在线环境交互或文件离线分析，解决网络安全技术挑战获取相应分值，与 ACM
+编程竞赛、信息学奥赛比较类似，根据总分和时间来排名。</p>
+<p>相不同的是解题模式一般会设置 <strong>一血</strong> 、 <strong>二血</strong> 、 <strong>三血</strong> ，也即最先完成的前三支队伍会获得额外分值，所以这不仅是对首先解出题目的队伍的分值鼓励，也是一种团队能力的间接体现。</p>
+<p>当然还有一种流行的计分规则是设置每道题目的初始分数后，根据该题的成功解答队伍数，来逐渐降低该题的分值，也就是说如果解答这道题的人数越多，那么这道题的分值就越低。最后会下降到一个保底分值后便不再下降。</p>
+<p>题目类型主要包含 <strong>Web 网络攻防</strong> 、 <strong>RE 逆向工程</strong> 、 <strong>Pwn 二进制漏洞利用</strong> 、 <strong>Crypto 密码攻击</strong> 、 <strong>Mobile 移动安全</strong> 以及 <strong>Misc 安全杂项</strong> 这六个类别。</p>
+<h2 id="-belluminar">战争分享模式 - Belluminar<a class="headerlink" href="#-belluminar" title="Permanent link">&para;</a></h2>
+<p>在 2016 年世界黑客大师挑战赛（WCTF）国内首次引入韩国 POC SECURITY 团队开创的 BELLUMINAR CTF （战争与分享）赛制，从此国内陆陆续续也有开始 BELLUMINAR 模式的比赛，目前采取这一赛制的有 2016
+年诸葛建伟老师集合的 XMan 夏令营分享赛以及同年 9 月的「百度杯」CTF 比赛。</p>
+<p>同时这里也有 BELLUMINAR 赛制的介绍官网： <a href="http://belluminar.org/">http://belluminar.org/</a></p>
+<h3 id="_1">赛制介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Belluminar, hacking contest of POC, started at POC2015 in KOREA for the first time. Belluminar is from 'Bellum'(war in Latin) and 'seminar'. It is not a just hacking contest but a kind of
+festival consisted of CTF &amp; seminar for the solution about challenges. Only invited teams can join Belluminar. Each team can show its ability to attack what other teams want to protect and can
+defend what others want to attack.</p>
+</blockquote>
+<p>如官网介绍这样，BELLUMINAR CTF 赛制由受邀参赛队伍相互出题挑战，并在比赛结束后进行赛题的出题思路，学习过程以及解题思路等进行分享。战队评分依据出题得分，解题得分和分享得分进行综合评价并得出最终的排名。</p>
+<h3 id="_2">出题阶段<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Each team is required to submit 2 challenges to the challenge bank of the sponsor.</p>
+</blockquote>
+<p>首先各个受邀参赛队伍都必须在正式比赛前出题，题量为 2 道。参赛队伍将有 12 周的时间准备题目。出题积分占总分的 30%。</p>
+<blockquote>
+<p>Challenge 1: must be on the Linux platform;</p>
+<p>Challenge 2: No platform restriction(except Linux) No challenge type restriction (Pwn, Reverse...)</p>
+</blockquote>
+<p>传统的 BELLUMINAR 赛制要求出的两道题中一道 Challenge 必须是在 Linux 平台，另外一个则为非 Linux 平台的 Challenge。两个 Challenge 的类型则没有做出限制。因此队伍可以尽情展现自己的技术水平。</p>
+<p>为使比赛题目类型比较均衡，也有采用队伍抽签出题的方式抽取自己的题，这要求队伍能力水平更为全面，因此为了不失平衡性，也会将两道 Challenge 的计入不同分值（比如要求其中一道 Challenge 分值为
+200，而另外一道分值则为 100）。</p>
+<h3 id="_3">提交部署<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>题目提交截止之前，各个队伍需要提交完整的出题文档以及解题 Writeup，要求出题文档中详细标明题目分值，题面，出题负责人，考察知识点列表以及题目源码。而解题 Writeup
+中则需要包含操作环境，完整解题过程，解题代码。</p>
+<p>题目提交之后主办方会对题目和解题代码进行测试，期间出现问题则需要该题负责人配合解决。最终部署到比赛平台上。</p>
+<h3 id="_4">解题竞技<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>进入比赛后，各支队伍可以看到所有其他团队出的题目并发起挑战，但是不能解答本队出的题目，不设置 First Blood 奖励，根据解题积分进行排名。解题积分占总分的 60%。</p>
+<h3 id="_5">分享讨论<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>比赛结束后，队伍休息，并准备制作分享 PPT（也可以在出题阶段准备好）。分享会时，各队派 2
+名队员上台进行出题解题思路，学习过程以及考察知识点等的分享。在演示结束后进入互动讨论环节，解说代表需要回答评委和其他选手提出的问题。解说没有太大的时间限制，但是时间用量是评分的一个标准。</p>
+<h3 id="_6">计分规则<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>出题积分（占总分 30%）有 50% 由评委根据题目提交的详细程度，完整质量，提交时间等进评分，另外 50% 则根据比赛结束后最终解题情况进行评分。计分公式示例：Score = MaxScore -- | N -- Expect＿N |。这里 N
+是指解出该题的队伍数量，而 Expect＿N 则是这道题预期应该解出的题目数量。只有当题目难度适中，解题队伍数量越接近预期数量 Expect＿N，则这道题的出题队伍得到的出题积分越高。</p>
+<p>解题积分（占总积分 60%）在计算时不考虑 First Blood 奖励。</p>
+<p>分享积分（占 10%）由评委和其他队伍根据其技术分享内容进行评分（考虑分享时间以及其他限制），计算平均值得出。</p>
+<h3 id="_7">赛制总评<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>赛制中将 Challenge 的出题方交由受邀战队，让战队能尽自己所能互相出题，比赛难度和范围不会被主办方水平限制，同时也能提高 Challenge
+的质量，每个战队都能有不一样的体验与提升。在"分享"环节，对本队题目进行讲解的同时也在深化自己的能力水平，在讨论回答的过程更是一种思维互动的环节。在赛后的学习总结中能得到更好的认知。</p>
+<h2 id="-attack-defense">攻防模式 - Attack &amp; Defense<a class="headerlink" href="#-attack-defense" title="Permanent link">&para;</a></h2>
+<h3 id="_8">概述<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>攻防模式常见于线下决赛。在攻防模式中，初始时刻，所有参赛队伍拥有相同的系统环境（包含若干服务，可能位于不同的机器上），常称为 gamebox，参赛队伍挖掘网络服务漏洞并攻击对手服务获取 flag 来得分，修补自身服务漏洞进行防御从而防止扣分（当然有的比赛在防御上会设置得分，一般防御只能避免丢分）。</p>
+<p>攻防模式可以实时通过得分反映出比赛情况，最终也以得分直接分出胜负，是一种竞争激烈，具有很强观赏性和高度透明性的网络安全赛制。在这种赛制中，不仅仅是比参赛队员的智力和技术，也比体力（因为比赛一般都会持续
+48 小时），同时也比团队之间的分工配合与合作。</p>
+<p>一般比赛的具体环境会在开赛前一天或者当天开赛前半小时由比赛主办方给出（是一份几页的小文档）。在这一段时间内，你需要根据主办方提供的文档熟悉环境并做好防御。</p>
+<p>在比赛开始前半小时，这半小时内是无法进行攻击的，各支队伍都会加紧熟悉比赛网络环境，并做好防御准备。至于敌方 Gamebox 的 IP 地址，则需要靠你自己在给出网段中发现。</p>
+<p>如果是分为上午下午两场攻防赛的话，那么上午和下午的 Gamebox 漏洞服务会更换（避免比赛中途休息时选手交流），但管理时要用的 IP 地址什么的不会改变。也就是 <strong>下午会换新题</strong> 。</p>
+<p>一般情况下，主办方会提供网线，<strong>但并不会提供网线转接口，所以需要自备。</strong></p>
+<h3 id="_9">基本规则<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>攻防模式一般的规则如下</p>
+<ul>
+<li>战队初始分数均为 x 分</li>
+<li>比赛以 5/10 分钟为一个回合，每回合主办方会更新已放出服务的 Flag</li>
+<li>每回合内，一个战队的一个服务被渗透攻击成功（被拿 Flag 并提交），则扣除一定分数，攻击成功的战队平分这些分。</li>
+<li>每回合内，如果战队能够维护自己的服务正常运行，则分数不会减少（如果防御成功加分则会加分）；</li>
+<li>如果一个服务宕机或异常无法通过测试，则可能会扣分，服务正常的战队平分这些分。往往服务异常会扣除较多的分数。</li>
+<li>如果该回合内所有战队的服务都异常，则认为是不可抗拒因素造成，分数都不减少。</li>
+<li>每回合内，服务异常和被拿 Flag 可以同时发生，即战队在一个回合内单个服务可能会扣除两者叠加的分数。</li>
+<li>禁止队伍使用通用防御方法</li>
+<li>请参赛队伍在比赛开始时对所有服务进行备份，若因自身原因服务永久损坏或丢失，无法恢复，主办方不提供重置服务</li>
+<li>禁止对赛题以外的比赛平台发起攻击，包括但不限于在 gamebox 提权 root、利用主办方平台漏洞等，违规者立刻取消参赛资格</li>
+<li>参赛队伍如果发现其他队伍存在违规行为，请立刻举报，我们会严格审核并作出相应判罚。</li>
+</ul>
+<h3 id="_10">网络环境<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>文档上一般都会有比赛环境的 <strong>网络拓扑图</strong> （如下图），每支队伍会维护若干的 <strong>Gamebox（己方服务器）</strong> ，Gamebox 上部署有存在漏洞的服务。</p>
+<p><img alt="攻防模式网络拓扑" src="../images/network.jpg" /></p>
+<p>文档上会包括选手，攻防环境，主办方三者的环境。</p>
+<p>选手需要在个人电脑上配置或者 DHCP 自动获取</p>
+<ul>
+<li>IP 地址</li>
+<li>网关</li>
+<li>掩码DNS 服务器地址</li>
+</ul>
+<p>攻防环境</p>
+<ul>
+<li>Gamebox 所处地址，包括己方和其他队伍的地址。</li>
+<li>比赛一般会提供队伍的 id 与对应 ip 的映射表，以便于让选手指定恰当的攻防策略。</li>
+</ul>
+<p>主办方环境</p>
+<ul>
+<li>比赛答题平台</li>
+<li>提交 flag 接口</li>
+<li>流量访问接口</li>
+</ul>
+<h3 id="gamebox">访问 Gamebox<a class="headerlink" href="#gamebox" title="Permanent link">&para;</a></h3>
+<p>参赛文档中会给出队伍登录 gamebox 的方式，一般来说如下</p>
+<ul>
+<li>用户名为 ctf</li>
+<li>通过 ssh 登录，密码或者私钥，一般会给出私钥。</li>
+</ul>
+<p>自然，在登录上战队机器后应该修改所有的默认密码，同时不应该设置弱密码。</p>
+                
+                  
+                
+              
+              
+                
+
+
+  <h2 id="__comments">评论</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://A30lu5.github.io/A30lu5/introduction/mode/";
+      this.page.identifier =
+        "introduction/mode/";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//ctf-wiki.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../history/" title="History" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                History
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../resources/" title="Resources" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                Resources
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2018 DF Team
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.b438e6c5.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+        <script src="../../_static/js/extra.js"></script>
+      
+        <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
