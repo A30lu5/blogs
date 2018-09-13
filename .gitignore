@@ -3,8 +3,3 @@ site/
 .vscode/
 */.DS_Store
 .env
-Jenkinsfile
-scripts
-*/data.yml
-*/core
-*/*.i64
