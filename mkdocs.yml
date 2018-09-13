@@ -1,0 +1,79 @@
+# Project Information
+site_name: DF Team
+site_description: DF Team CTF writeups
+site_author: DF Team
+site_url: https://A30lu5.github.io/A30lu5/
+
+# Repository
+repo_name: 'A30lu5/A30lu5.github.io'
+repo_url: 'https://github.com/A30lu5/A30lu5.github.io'
+edit_uri: 'blob/master/docs/'
+
+# Copyright
+copyright: 'Copyright &copy; 2016 - 2018 DF Team'
+
+# Contents
+nav:
+  - Introduction:
+    - Getting Started: index.md
+    - CTF 历史: introduction/history.md
+    - CTF 竞赛模式简介: introduction/mode.md
+    - CTF 竞赛内容: introduction/content.md
+    - 线下攻防经验小结: introduction/experience.md
+    - CGC 超级挑战赛: introduction/cgc.md
+    - 学习资源: introduction/resources.md
+
+# Theme
+theme:
+  name: 'material'
+  language: 'zh'
+  palette:
+    primary: 'white'
+    accent: 'red'
+  logo:
+    icon: 'school'
+  feature:
+    tabs: true
+  font:
+    text: 'Fira Sans'
+    code: 'Fira Mono'
+
+# Customization
+extra:
+  search:
+    language: 'jp'
+  disqus: 'ctf-wiki'
+  copyright: 'CC BY-NC-SA 4.0'
+
+extra_javascript:
+  - '_static/js/extra.js'
+  - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
+
+extra_css:
+  - '_static/css/extra.css'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
