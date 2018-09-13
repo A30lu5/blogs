@@ -3,7 +3,7 @@
 
 # Fill this out with the correct org/repo
 ORG=A30lu5
-REPO=A30lu5.github.io
+REPO=blogs
 # This probably should match an email for one of your users.
 EMAIL=df11a@aeolus.group
 
