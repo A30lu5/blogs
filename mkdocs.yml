@@ -2,11 +2,11 @@
 site_name: DF Team
 site_description: DF Team CTF writeups
 site_author: DF Team
-site_url: https://A30lu5.github.io/A30lu5/
+site_url: https://A30lu5.github.io/blogs/
 
 # Repository
-repo_name: 'A30lu5/A30lu5.github.io'
-repo_url: 'https://github.com/A30lu5/A30lu5.github.io'
+repo_name: 'A30lu5/blogs'
+repo_url: 'https://github.com/A30lu5/blogs'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
