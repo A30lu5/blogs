@@ -1,52 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//</loc>
+     <loc>https://A30lu5.github.io/blogs/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-        
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//introduction/cgc/</loc>
+     <loc>https://A30lu5.github.io/blogs/introduction/history/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//introduction/content/</loc>
+     <loc>https://A30lu5.github.io/blogs/introduction/mode/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//introduction/experience/</loc>
+     <loc>https://A30lu5.github.io/blogs/introduction/content/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//introduction/history/</loc>
+     <loc>https://A30lu5.github.io/blogs/introduction/experience/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//introduction/mode/</loc>
+     <loc>https://A30lu5.github.io/blogs/introduction/cgc/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://A30lu5.github.io/A30lu5//introduction/resources/</loc>
+     <loc>https://A30lu5.github.io/blogs/introduction/resources/</loc>
      <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
 </urlset>
