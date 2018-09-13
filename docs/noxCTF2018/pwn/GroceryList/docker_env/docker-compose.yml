@@ -1,0 +1,9 @@
+services:
+  GroceryList:
+    build: .
+    command: /start.sh
+    image: 10.10.83.201:5001/cc:GroceryList
+    ports:
+    - 9999:9999
+    restart: unless-stopped
+version: '3'

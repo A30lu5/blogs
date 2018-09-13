@@ -1,0 +1,23 @@
+noxCTF2018:
+  _meta_:
+    - max_score: 1000
+    - name: "noxCTF2018"
+  pwn:
+    - believeMe:
+      - score: 378 
+      - flag: 
+        -  random
+      - pushflag: ./pwn/believeMe/deploy/pushflag.sh
+      - env: ./pwn/believeMe/docker_env/docker-compose.yml
+      - attachment: ./pwn/believeMe/believeMe
+      - writeup-cn: 
+        - ./pwn/believeMe/exp.py
+        - ./pwn/believeMe/exp2.py
+      - writeup-en: 
+        - ./pwn/believeMe/exp.py
+        - ./pwn/believeMe/exp2.py
+      - description-cn: NULL
+      - description-en: NULL
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
