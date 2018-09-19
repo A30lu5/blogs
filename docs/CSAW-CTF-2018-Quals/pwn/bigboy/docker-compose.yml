@@ -1,0 +1,10 @@
+version: "3"
+services:
+  bigboy:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__bigboy:1.0
+    restart: unless-stopped
+    ports:
+      - "1436:1436"
+    labels:
+      '1436': nc IP PORT

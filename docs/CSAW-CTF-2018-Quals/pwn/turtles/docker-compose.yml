@@ -1,0 +1,10 @@
+version: "3"
+services:
+  turtles:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__turtles:1.0
+    restart: unless-stopped
+    ports:
+      - "8024:8024"
+    labels:
+      '8024': nc IP PORT

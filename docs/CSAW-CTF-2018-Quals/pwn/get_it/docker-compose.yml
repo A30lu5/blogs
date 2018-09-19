@@ -1,0 +1,10 @@
+version: "3"
+services:
+  get_it:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__get_it:1.0
+    restart: unless-stopped
+    ports:
+      - "1437:1437"
+    labels:
+      '1437': nc IP PORT
