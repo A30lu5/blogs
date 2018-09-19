@@ -1,0 +1,10 @@
+version: "3"
+services:
+  shellpointcode:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__shellpointcode:1.0
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    labels:
+      '8000': nc IP PORT
