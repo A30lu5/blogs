@@ -89,3 +89,95 @@ noxCTF2018:
         - bof
       - hint: NULL
       - origin: noxale
+  crypto:
+    - Chop_Suey:
+      - score: 118
+      - flag: 
+        -  noxCTF{W31c0m3_70_Ch1n470wn}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/Chop_Suey/attachment/attach.txt
+      - writeup-cn: 
+        - ./crypto/Chop_Suey/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Today I ate in a Chinese restaurant and got myself a fortune cookie. These things usually contain a note with a nice sentence or phrase, but mine had numbers in it instead! Can you help me find the meaning of the numbers?"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Decryptor:
+      - score: 447
+      - flag: 
+        -  noxCTF{0u7sm4r73d}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/Decryptor/attachment/attach.txt
+      - writeup-cn: 
+        - ./crypto/Decryptor/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "I created this nice decryptor for RSA ciphertexts, you should try it out!"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Plot_Twist:
+      - score: 543
+      - flag: 
+        -  random
+      - pushflag: ./crypto/Plot_Twist/deploy/pushflag.sh
+      - env: ./crypto/Plot_Twist/deploy/docker-compose.yml
+      - attachment: ./crypto/Plot_Twist/attachment/server.py
+      - writeup-cn: 
+        - ./crypto/Plot_Twist/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Can you get the flag from the flawlessly written server?"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Java_Corporation:
+      - score: 701
+      - flag: 
+        -  noxCTF{0n3_p4d_2_f4r}
+      - pushflag: NULL
+      - env: ./crypto/Java_Corporation/deploy/docker-compose.yml
+      - attachment: ./crypto/Java_Corporation/attachment/attachment.zip
+      - writeup-cn: 
+        - ./crypto/Java_Corporation/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Description: How much damage could a single character cause?"
+      - tag: 
+        - padding_oracle
+      - hint: NULL
+      - origin: noxale
+    - WTF:
+      - score: 742
+      - flag: 
+        -  noxCTF{RSA_1337_10rd}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/WTF/attachment/attach.txt
+      - writeup-cn: 
+        - ./crypto/WTF/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Um uhhhhhhhhh WTF IS THIS?! I give up. Now you try to solve this."
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Trinity:
+      - score: 794
+      - flag: 
+        -  noxCTF{D4mn_y0u_h4s74d_wh47_4_b100dy_b4s74rd!}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/Trinity/attachment/attach.txt
+      - writeup-cn: 
+        - ./crypto/Trinity/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Neo, you are the chosen one. The only person who can make sense of these numbers. Do it."
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
