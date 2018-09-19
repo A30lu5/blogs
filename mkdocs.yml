@@ -26,6 +26,10 @@ nav:
         - GuessTheString: noxCTF2018/reverse/GuessTheString/writeup.md
         - Att3nti0n: noxCTF2018/reverse/Att3nti0n/writeup.md
         - avatar: noxCTF2018/reverse/avatar/writeup.md
+      - web:
+        - Reference: noxCTF2018/web/Reference/writeup.md
+        - MyFileUploader: noxCTF2018/web/MyFileUploader/writeup.md
+        - hiddenDOM: noxCTF2018/web/hiddenDOM/writeup.md
 
 # Theme
 theme:
