@@ -22,6 +22,10 @@ nav:
         - The Name Calculator: noxCTF2018/pwn/TheNameCalculator/writeup.md
         - Grocery List: noxCTF2018/pwn/GroceryList/writeup.md
         - The Black Canary: noxCTF2018/pwn/TheBlackCanary/writeup.md
+      - reverse:
+        - GuessTheString: noxCTF2018/reverse/GuessTheString/writeup.md
+        - Att3nti0n: noxCTF2018/reverse/Att3nti0n/writeup.md
+        - avatar: noxCTF2018/reverse/avatar/writeup.md
 
 # Theme
 theme:

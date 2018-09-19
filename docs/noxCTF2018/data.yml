@@ -181,3 +181,49 @@ noxCTF2018:
       - tag: NULL
       - hint: NULL
       - origin: noxale
+  reverse:
+    - guess the string:
+      - score: 438
+      - flag: 
+        -  noxCTF{A5semb1y_Is_Grea7}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./reverse/GuessTheString/attachments/GuessTheString
+      - writeup-cn: 
+        - ./reverse/GuessTheString/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Would you like to test your luck?Let's see if you can guess the correct string.nc chal.noxale.com 22234"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Att3nti0n:
+      - score: 785
+      - flag: 
+        -  noxTF{H1dd3n_FUNc710n5_4r3_C001!}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./reverse/Att3nti0n/attachment/att3nti0n.exe
+      - writeup-cn: 
+        - ./reverse/Att3nti0n/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "For this challenge you need your full attention, it will be very helpful ;)"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - avatar:
+      - score: 891
+      - flag: 
+        -  noxCTF{Fu11_M00n-Th3_Bl1nd_0n3-420B1B2E57-B41dy}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./reverse/avatar/Avatar
+      - writeup-cn: 
+        - ./reverse/avatar/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Water. Earth. Fire. Air."
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale

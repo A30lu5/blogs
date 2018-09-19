@@ -8,6 +8,5 @@ solver.add((((14 * (((source | 0x40) - 87254612 + 123456) | 0x10000) >> 1) - 999
 solver.add(source != 283654106647)
 print("Solving...")
 print solver.check()
-modl = solver.model()
-print modl
+print solver.model()
 # flag: noxCTF{Fu11_M00n-Th3_Bl1nd_0n3-420B1A2E17-B41dy}
