@@ -879,13 +879,41 @@
                 
                 <h1 id="decrypto">Decrypto<a class="headerlink" href="#decrypto" title="Permanent link">&para;</a></h1>
 <p>nc连接后是个RSA解密程序，发送c的16进制会返回解密后的m，但限制不能解密题目给的c。
-可以把c分解为c1<em>c2。
-因为 m=c^d mod n
-    m=(c1</em>c2)^d mod n</p>
-<p>设   m1=c1^d mod n, m2=c2^d mod n
-则   m=(m1*m2) mod n</p>
+可以把c分解为c1*c2。
+因为 </p>
+<p>m≡c<sup>d</sup> mod n
+m≡(c1*c2)<sup>d</sup> mod n</p>
+<p>设   </p>
+<p>m1≡c1<sup>d</sup> mod n
+m2≡c2<sup>d</sup> mod n</p>
+<p>则   </p>
+<p>m≡(m1*m2) mod n</p>
 <p>所以只要将c1,c2发送给服务端解密，得到m1和m2即可得到明文。</p>
-<p>因数分解网站：<a href="http://factordb.com/index.php">http://factordb.com/index.php</a></p>
+<p>exp.py:
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">140165355674296399459239442258630641339281917770736077969396713192714338090714726890918178888723629353043167144351074222216025145349467583141291274172356560132771690830020353668100494447956043734613525952945037667879068512918232837185005693504551982611886445611514773529698595162274883360353962852882911457919</span>
+<span class="n">c1</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mi">11</span><span class="o">*</span><span class="mi">11633</span>
+<span class="n">c2</span><span class="o">=</span><span class="mi">337776996205622514139897267259622439941441577050030472993857902470788424676204277856454319830164782994228390126907608894811791518457376474361092974276605202489697046967039975326799197021653060520761195507307194624139422604620483078617109192392046282600537260825743758255965171978527573880584944049011359</span>
+<span class="n">c1</span><span class="o">=</span><span class="nb">hex</span><span class="p">(</span><span class="n">c1</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">c2</span><span class="o">=</span><span class="nb">hex</span><span class="p">(</span><span class="n">c2</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+
+<span class="n">r1</span><span class="o">=</span><span class="n">remote</span><span class="p">(</span><span class="s1">&#39;chal.noxale.com&#39;</span><span class="p">,</span><span class="mi">4242</span><span class="p">)</span>
+<span class="n">r1</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">r1</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">recvline</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">r1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">r2</span><span class="o">=</span><span class="n">remote</span><span class="p">(</span><span class="s1">&#39;chal.noxale.com&#39;</span><span class="p">,</span><span class="mi">4242</span><span class="p">)</span>
+<span class="n">r2</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">r2</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+<span class="n">m2</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">recvline</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">r2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">m</span><span class="o">=</span><span class="p">(</span><span class="n">m1</span><span class="o">*</span><span class="n">m2</span><span class="p">)</span><span class="o">%</span><span class="n">n</span>
+<span class="k">print</span> <span class="n">long_to_bytes</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+因数分解网站：<a href="http://factordb.com/index.php">http://factordb.com/index.php</a></p>
                 
                   
                 
