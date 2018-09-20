@@ -52,8 +52,8 @@ theme:
   name: 'material'
   language: 'zh'
   palette:
-    primary: 'light green'
-    accent: 'light green'
+    primary: 'light blue'
+    accent: 'light blue'
   logo:
     icon: 'school'
   feature:
