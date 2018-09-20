@@ -16,7 +16,7 @@ import threading
 import datetime
 import fnmatch
 
-CONCURRENT_THREAD_NUM = 8
+CONCURRENT_THREAD_NUM = 4
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
