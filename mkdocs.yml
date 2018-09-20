@@ -30,6 +30,12 @@ nav:
         - Reference: noxCTF2018/web/Reference/writeup.md
         - MyFileUploader: noxCTF2018/web/MyFileUploader/writeup.md
         - hiddenDOM: noxCTF2018/web/hiddenDOM/writeup.md
+      - misc:
+        - Blind Date: noxCTF2018/misc/Blind_Date/writeup.md
+        - Python_for_fun: noxCTF2018/misc/Python_for_fun/writeup.md
+        - Python_for_fun_2: noxCTF2018/misc/Python_for_fun_2/writeup.md
+        - Read_Between_The_Lines: noxCTF2018/misc/Read_Between_The_Lines/writeup.md
+        - Slippery_Situation: noxCTF2018/misc/Slippery_Situation/writeup.md
 
 # Theme
 theme:
