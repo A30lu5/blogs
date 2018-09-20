@@ -7,7 +7,7 @@ noxCTF2018:
       - score: 378 
       - flag: 
         -  random
-      - pushflag: ./pwn/believeMe/deploy/pushflag.sh
+      - pushflag: ./pwn/believeMe/docker_env/pushflag.sh
       - env: ./pwn/believeMe/docker_env/docker-compose.yml
       - attachment: ./pwn/believeMe/believeMe
       - writeup-cn: 
@@ -34,7 +34,7 @@ noxCTF2018:
       - score: 537
       - flag: 
         -  random
-      - pushflag: ./pwn/TheNameCalculator/deploy/pushflag.sh
+      - pushflag: ./pwn/TheNameCalculator/docker_env/pushflag.sh
       - env: ./pwn/TheNameCalculator/docker_env/docker-compose.yml
       - attachment: ./pwn/TheNameCalculator/TheNameCalculator
       - writeup-cn: 
@@ -51,7 +51,7 @@ noxCTF2018:
       - score: 785
       - flag: 
         -  random
-      - pushflag: ./pwn/GroceryList/deploy/pushflag.sh
+      - pushflag: ./pwn/GroceryList/docker_env/pushflag.sh
       - env: ./pwn/GroceryList/docker_env/docker-compose.yml
       - attachment: ./pwn/GroceryList/GroceryList
       - writeup-cn: 
@@ -73,7 +73,7 @@ noxCTF2018:
       - score: 891
       - flag: 
         -  random
-      - pushflag: ./pwn/TheBlackCanary/deploy/pushflag.sh
+      - pushflag: ./pwn/TheBlackCanary/docker_env/pushflag.sh
       - env: ./pwn/TheBlackCanary/docker_env/docker-compose.yml
       - attachment: ./pwn/TheBlackCanary/TheBlackCanary
       - writeup-cn: 
@@ -227,3 +227,126 @@ noxCTF2018:
       - tag: NULL
       - hint: NULL
       - origin: noxale
+  misc:
+    - Blind_Date:
+      - score: 573
+      - flag: 
+        -  noxCTF{W0uld_y0u_bl1nd_d4t3_4_bl1nd_d4t3?}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./misc/Blind_Date/attachment/BlindDate.jpeg
+      - writeup-cn: 
+        - ./misc/Blind_Date/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "My mom got me a date with someone! she sent me an image but i cannot open it. I don't want it to be a blind date. Can you help me?"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Python_for_fun:
+      - score: 292
+      - flag: 
+        -  noxCTF{py7h0n_15_4w350m3}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/Python_for_fun/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Welcome to noxale's online python class!!! You can try it for free for a limited time and learn basic programming in python 3. "
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Python_for_fun_2:
+      - score: 634
+      - flag: 
+        -  noxCTF{py7h0n_15_6r347}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/Python_for_fun_2/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "A hacker found a sec hole in our online python class :( He read our secret file which contains the secret way of milking a snake! After hunting him down, we fixed the hole so no one will ever milk a snake again"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Read_Between_The_Lines:
+      - score: 452
+      - flag: 
+        -  noxCTF{DaFuckIsWHITESPACE}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./misc/Read_Between_The_Lines/attachment/message.code
+      - writeup-cn: 
+        - ./misc/Read_Between_The_Lines/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "My boss promised me that he would give me a raise if I solve his challenge. Have I already mentioned I suck in challenges?"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Slippery_Situation:
+      - score: 750
+      - flag: 
+        -  noxCTF{Z1p_Fil3s_Ar3_Fun_H4ha}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/Slippery_Situation/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Something slippery is happening here, this virus scan website smells fishy, thats why its slippy, I need to get to the control panel and see whats going on."
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+  web:
+    - hiddenDOM:
+      - score: 670
+      - flag: 
+        -  noxCTF{/[h1DD3N]*[55Rf]*[r393X]*/}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/hiddenDOM/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "I decided to create a tool that searches for hidden elements inside a web pages. Few days ago someone told me that my website is not so /secure/... Can you check it yourself ?"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - Reference:
+      - score: 670
+      - flag: 
+        -  noxCTF{G0ogL3_1s_4lW4Ys_Ur_b3ST_R3f3r3nc3}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/Reference/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "What is your reference again?"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+    - MyFileUploader:
+      - score: 670
+      - flag: 
+        -  noxCTF{N3V3R_7RU57_07H3R5}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/MyFileUploader/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "This is my new file uploader server. I bet you can't hack it!"
+      - tag: NULL
+      - hint: NULL
+      - origin: noxale
+
