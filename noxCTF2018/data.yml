@@ -312,7 +312,7 @@ noxCTF2018:
       - env: NULL
       - attachment: NULL
       - writeup-cn: 
-        - ./misc/hiddenDOM/writeup.md
+        - ./web/hiddenDOM/writeup.md
       - writeup-en: NULL
       - description-cn: NULL
       - description-en: "I decided to create a tool that searches for hidden elements inside a web pages. Few days ago someone told me that my website is not so /secure/... Can you check it yourself ?"
@@ -327,7 +327,7 @@ noxCTF2018:
       - env: NULL
       - attachment: NULL
       - writeup-cn: 
-        - ./misc/Reference/writeup.md
+        - ./web/Reference/writeup.md
       - writeup-en: NULL
       - description-cn: NULL
       - description-en: "What is your reference again?"
@@ -342,7 +342,7 @@ noxCTF2018:
       - env: NULL
       - attachment: NULL
       - writeup-cn: 
-        - ./misc/MyFileUploader/writeup.md
+        - ./web/MyFileUploader/writeup.md
       - writeup-en: NULL
       - description-cn: NULL
       - description-en: "This is my new file uploader server. I bet you can't hack it!"
