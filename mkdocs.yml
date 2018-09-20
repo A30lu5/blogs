@@ -36,6 +36,13 @@ nav:
         - Python_for_fun_2: noxCTF2018/misc/Python_for_fun_2/writeup.md
         - Read_Between_The_Lines: noxCTF2018/misc/Read_Between_The_Lines/writeup.md
         - Slippery_Situation: noxCTF2018/misc/Slippery_Situation/writeup.md
+      - crypto:
+        - Chop_Suey: noxCTF2018/crypto/Chop_Suey/writeup.md
+        - Decryptor: noxCTF2018/crypto/Decryptor/writeup.md
+        - Java_Corporation: noxCTF2018/crypto/Java_Corporation/writeup.md
+        - Plot_Twist: noxCTF2018/crypto/Plot_Twist/writeup.md
+        - Trinity: noxCTF2018/crypto/Trinity/writeup.md
+        - WTF: noxCTF2018/crypto/WTF/writeup.md
     - CSAW-CTF-2018-Quals:
       - Pwn:
         - bigboy | 简单栈溢出: CSAW-CTF-2018-Quals/pwn/bigboy/writeup.md
