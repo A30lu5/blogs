@@ -1,9 +1,5 @@
 # Chop_Suey
 
-## **[目标]**
-## **[环境]**
-## **[工具]**
-## **[分析过程]**
 RSA中已知dp,dq,q,p,c求m的问题
 分析文章:[http://skysec.top/2018/08/25/RSA%E4%B9%8B%E6%8B%92%E7%BB%9D%E5%A5%97%E8%B7%AF-2/](http://skysec.top/2018/08/25/RSA%E4%B9%8B%E6%8B%92%E7%BB%9D%E5%A5%97%E8%B7%AF-2/)
 
