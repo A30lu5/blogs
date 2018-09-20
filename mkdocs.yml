@@ -30,6 +30,16 @@ nav:
         - Reference: noxCTF2018/web/Reference/writeup.md
         - MyFileUploader: noxCTF2018/web/MyFileUploader/writeup.md
         - hiddenDOM: noxCTF2018/web/hiddenDOM/writeup.md
+    - CSAW-CTF-2018-Quals:
+      - Pwn:
+        - bigboy | 简单栈溢出: CSAW-CTF-2018-Quals/pwn/bigboy/writeup.md
+        - get it | 简单栈溢出:  CSAW-CTF-2018-Quals/pwn/get_it/writeup.md
+        - shellpointcode | 13字节的shellcode: CSAW-CTF-2018-Quals/pwn/shellpointcode/writeup.md
+        - doubletrouble | 双精度浮点排序: CSAW-CTF-2018-Quals/pwn/doubletrouble/writeup.md
+        - turtles | objc对象构造: CSAW-CTF-2018-Quals/pwn/turtles/writeup.md
+        - PLC | ret2syscall: CSAW-CTF-2018-Quals/pwn/plc/writeup.md
+        - Alien Invasion | 数据越界: CSAW-CTF-2018-Quals/pwn/alien_invasion/writeup.md
+
 
 # Theme
 theme:

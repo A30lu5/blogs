@@ -1,0 +1,101 @@
+CSAW-CTF-2018-Quals:
+  _meta_:
+    - max_score: 500
+    - name: "CSAW-CTF-2018-Quals"
+  pwn:
+    - alien_invasion:
+      - score: 400
+      - flag: 
+        -  random
+      - pushflag: ./pwn/alien_invasion/pushflag.sh
+      - env: ./pwn/alien_invasion/docker-compose.yml
+      - attachment: ./pwn/alien_invasion/aliensVSsamurais
+      - writeup-cn: 
+        - ./pwn/alien_invasion/writeup.md
+      - writeup-en: 
+        - ./pwn/alien_invasion/writeup.md
+      - description-cn: "Construct additional pylons"
+      - description-en: "Construct additional pylons"
+      - tag: "index out of bound"
+      - hint: NULL
+      - origin: CSAW18
+    - bigboy:
+      - score: 25
+      - flag: 
+        -  random
+      - pushflag: ./pwn/bigboy/pushflag.sh
+      - env: ./pwn/bigboy/docker-compose.yml
+      - attachment: ./pwn/bigboy/boi
+      - writeup-cn: 
+        - ./pwn/bigboy/writeup.md
+      - writeup-en: 
+        - ./pwn/bigboy/writeup.md
+      - description-cn: "Only big boi pwners will get this one!"
+      - description-en: "Only big boi pwners will get this one!"
+      - tag: "stackoverflow"
+      - hint: NULL
+      - origin: CSAW18
+    - doubletrouble:
+      - score: 200
+      - flag: 
+        -  random
+      - pushflag: ./pwn/doubletrouble/pushflag.sh
+      - env: ./pwn/doubletrouble/docker-compose.yml
+      - attachment: ./pwn/doubletrouble/doubletrouble
+      - writeup-cn: 
+        - ./pwn/doubletrouble/writeup.md
+      - writeup-en: 
+        - ./pwn/doubletrouble/writeup.md
+      - description-cn: "Did you know every Number in javascript is a float"
+      - description-en: "Did you know every Number in javascript is a float"
+      - tag: "double sort"
+      - hint: NULL
+      - origin: CSAW18
+    - get_it:
+      - score: 50
+      - flag: 
+        -  random
+      - pushflag: ./pwn/get_it/pushflag.sh
+      - env: ./pwn/get_it/docker-compose.yml
+      - attachment: ./pwn/get_it/get_it
+      - writeup-cn: 
+        - ./pwn/get_it/writeup.md
+      - writeup-en: 
+        - ./pwn/get_it/writeup.md
+      - description-cn: "Do you get it?"
+      - description-en: "Do you get it?"
+      - tag: "stackoverflow"
+      - hint: NULL
+      - origin: CSAW18
+    - shellpointcode:
+      - score: 100
+      - flag: 
+        -  random
+      - pushflag: ./pwn/shellpointcode/pushflag.sh
+      - env: ./pwn/shellpointcode/docker-compose.yml
+      - attachment: ./pwn/shellpointcode/shellpointcode
+      - writeup-cn: 
+        - ./pwn/shellpointcode/writeup.md
+      - writeup-en: 
+        - ./pwn/shellpointcode/writeup.md
+      - description-cn: "Linked lists are great! They let you chain pieces of data together."
+      - description-en: "Linked lists are great! They let you chain pieces of data together."
+      - tag: "shellcode"
+      - hint: NULL
+      - origin: CSAW18
+    - turtles:
+      - score: 250
+      - flag: 
+        -  random
+      - pushflag: ./pwn/turtles/pushflag.sh
+      - env: ./pwn/turtles/docker-compose.yml
+      - attachment: ./pwn/turtles/turtles
+      - writeup-cn: 
+        - ./pwn/turtles/writeup.md
+      - writeup-en: 
+        - ./pwn/turtles/writeup.md
+      - description-cn: "Looks like you found a bunch of turtles but their shells are nowhere to be seen! Think you can make a shell for them?"
+      - description-en: "Looks like you found a bunch of turtles but their shells are nowhere to be seen! Think you can make a shell for them?"
+      - tag: "objc structure"
+      - hint: NULL
+      - origin: CSAW18
