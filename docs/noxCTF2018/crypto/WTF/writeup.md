@@ -1,7 +1,7 @@
 # WTF
 
 
-RSA的wiener attack攻击，但需要需要先用1337解码一下
+RSA的wiener attack攻击，但需要先用1337解码一下
 
 exp.py
 ```

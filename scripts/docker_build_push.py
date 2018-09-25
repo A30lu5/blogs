@@ -77,8 +77,8 @@ def div_list(ls, n):
 	ls_len = len(ls)
 	if n <= 0 or 0 == ls_len:
 		return []
-	if n > ls_len:
-		return []
+	# if n > ls_len:
+	# 	return []
 	elif n == ls_len:
 		return [[i] for i in ls]
 	else:

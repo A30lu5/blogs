@@ -52,8 +52,18 @@ nav:
         - turtles | objc对象构造: CSAW-CTF-2018-Quals/pwn/turtles/writeup.md
         - PLC | ret2syscall: CSAW-CTF-2018-Quals/pwn/plc/writeup.md
         - Alien Invasion | 数据越界: CSAW-CTF-2018-Quals/pwn/alien_invasion/writeup.md
-
-
+      - Crypto:
+        -  babycrypto : CSAW-CTF-2018-Quals/crypto/babycrypto/writeup.md
+        -  flatcrypt : CSAW-CTF-2018-Quals/crypto/flatcrypt/writeup.md
+        -  lowe : CSAW-CTF-2018-Quals/crypto/lowe/writeup.md
+        -  holywater : CSAW-CTF-2018-Quals/crypto/holywater/writeup.md
+        -  collusion : CSAW-CTF-2018-Quals/crypto/collusion/writeup.md
+      - Misc:
+        -  bin_t : CSAW-CTF-2018-Quals/misc/bin_t/writeup.md
+        -  algebra : CSAW-CTF-2018-Quals/misc/algebra/writeup.md
+        -  TakeAnL : CSAW-CTF-2018-Quals/misc/TakeAnL/writeup.md
+        -  Short-Circuit : CSAW-CTF-2018-Quals/misc/Short-Circuit/writeup.md
+ 
 # Theme
 theme:
   name: 'material'
