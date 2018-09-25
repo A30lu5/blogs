@@ -190,8 +190,8 @@ CSAW-CTF-2018-Quals:
       - score: 50
       - flag: 
         - random
-      - pushflag: ./misc/bin_t/docker-compose.yml
-      - env: ./misc/bin_t/pushflag.sh
+      - pushflag: NULL
+      - env: NULL
       - attachment: NULL
       - writeup-cn: 
         - ./misc/bin_t/writeup.md
@@ -206,8 +206,8 @@ CSAW-CTF-2018-Quals:
       - score: 100
       - flag: 
         - random
-      - pushflag: ./misc/algebra/docker-compose.yml
-      - env: ./misc/algebra/pushflag.sh
+      - pushflag: ./misc/algebra/pushflag.sh
+      - env: ./misc/algebra/docker-compose.yml
       - attachment: NULL
       - writeup-cn: 
         - ./misc/algebra/writeup.md
@@ -221,8 +221,8 @@ CSAW-CTF-2018-Quals:
       - score: 200
       - flag: 
         - random
-      - pushflag: ./misc/TakeAnL/docker-compose.yml
-      - env: ./misc/TakeAnL/pushflag.sh
+      - pushflag: ./misc/TakeAnL/pushflag.sh
+      - env: ./misc/TakeAnL/docker-compose.yml
       - attachment: NULL
       - writeup-cn: 
         - ./misc/TakeAnL/writeup.md
