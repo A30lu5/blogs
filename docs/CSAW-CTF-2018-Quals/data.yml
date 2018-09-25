@@ -294,4 +294,79 @@ CSAW-CTF-2018-Quals:
       - tag: NULL
       - hint: NULL
       - origin: CSAW18
-      
+  reverse:
+    - A-Walk-Through-x86-Part-1:
+      - score: 50
+      - flag: 
+        - flag{rev_up_y0ur_3ng1nes_reeeeeeeeeeeeecruit5!}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./rev/A-Walk-Through-x86-Part-1/stage-1.asm
+      - writeup-cn: 
+        - ./rev/A-Walk-Through-x86-Part-1/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: NULL
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - A-Walk-Through-x86-Part-2:
+      - score: 100
+      - flag: 
+        - flag{0ne_sm411_JMP_for_x86_on3_m4ss1ve_1eap_4_Y0U}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./rev/A-Walk-Through-x86-Part-1/stage-2.bin
+      - writeup-cn: 
+        - ./rev/A-Walk-Through-x86-Part-2/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: NULL
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - A-Walk-Through-x86-Part-3:
+      - score: 200
+      - flag: 
+        - flag{0ne_sm411_JMP_for_x86_on3_m4ss1ve_1eap_4_Y0U}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./rev/A-Walk-Through-x86-Part-3/part-3-server.py
+      - writeup-cn: 
+        - ./rev/A-Walk-Through-x86-Part-3/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: NULL
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - 1337:
+      - score: 500
+      - flag: 
+        - flag{4.\/3ry.1337.|>45$vVp@9/}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./rev/1337/1337.exe
+      - writeup-cn: 
+        - ./rev/1337/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "1337 hax0rz for the win"
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - kvm:
+      - score: 500
+      - flag: 
+        - flag{who would win?  100 ctf teams or 1 obfuscat3d boi?}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./rev/kvm/challenge
+      - writeup-cn: 
+        - ./rev/kvm/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "We found a mysterious program that none of our most talented hackers could even begin to figure out."
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
