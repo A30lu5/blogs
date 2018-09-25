@@ -100,7 +100,7 @@ CSAW-CTF-2018-Quals:
       - hint: NULL
       - origin: CSAW18
   web:
-    - ldab
+    - ldab:
       - score: 50
       - flag: 
         -  flag{ld4p_inj3ction_i5_a_th1ng}
@@ -116,7 +116,7 @@ CSAW-CTF-2018-Quals:
       - tag: "ldap"
       - hint: NULL
       - origin: CSAW18
-    - sso
+    - sso:
       - score: 100
       - flag: 
         -  flag{JsonWebTokensaretheeasieststorage-lessdataoptiononthemarket!theyrelyonsupersecureblockchainlevelencryptionfortheirmethods}
@@ -132,7 +132,7 @@ CSAW-CTF-2018-Quals:
       - tag: "oauth2"
       - hint: NULL
       - origin: CSAW18
-    - wtf_sql
+    - wtf_sql:
       - score: 500
       - flag: 
         -  flag{b3tter_th@n_th3_prequels}
