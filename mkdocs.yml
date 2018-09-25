@@ -59,10 +59,10 @@ nav:
         -  holywater : CSAW-CTF-2018-Quals/crypto/holywater/writeup.md
         -  collusion : CSAW-CTF-2018-Quals/crypto/collusion/writeup.md
       - Misc:
-        -  bin_t : CSAW-CTF-2018-Quals/crypto/bin_t/writeup.md
-        -  algebra : CSAW-CTF-2018-Quals/crypto/algebra/writeup.md
-        -  TakeAnL : CSAW-CTF-2018-Quals/crypto/TakeAnL/writeup.md
-        -  Short-Circuit : CSAW-CTF-2018-Quals/crypto/Short-Circuit/writeup.md
+        -  bin_t : CSAW-CTF-2018-Quals/misc/bin_t/writeup.md
+        -  algebra : CSAW-CTF-2018-Quals/misc/algebra/writeup.md
+        -  TakeAnL : CSAW-CTF-2018-Quals/misc/TakeAnL/writeup.md
+        -  Short-Circuit : CSAW-CTF-2018-Quals/misc/Short-Circuit/writeup.md
  
 # Theme
 theme:
