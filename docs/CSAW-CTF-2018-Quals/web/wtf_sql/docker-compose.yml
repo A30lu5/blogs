@@ -1,0 +1,13 @@
+version: "3"
+services:
+  wtf_sql:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__wtf_sql:1.0
+    restart: unless-stopped
+    ports:
+      - "80:9090"
+    environment:
+      - MYSQL_USER=app_sql
+      - MYSQL_PASSWORD=app_sql
+      - MYSQL_DATABASE=app_sql
+      - MYSQL_ROOT_PASSWORD=password 
