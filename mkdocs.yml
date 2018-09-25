@@ -63,6 +63,13 @@ nav:
         -  algebra : CSAW-CTF-2018-Quals/misc/algebra/writeup.md
         -  TakeAnL : CSAW-CTF-2018-Quals/misc/TakeAnL/writeup.md
         -  Short-Circuit : CSAW-CTF-2018-Quals/misc/Short-Circuit/writeup.md
+      - Web:
+        - ldab: CSAW-CTF-2018-Quals/web/ldab/README.md
+        - movie_club: CSAW-CTF-2018-Quals/web/movie_club/writeup.md
+        - nvs: CSAW-CTF-2018-Quals/web/nvs/README.md
+        - sso: CSAW-CTF-2018-Quals/web/sso/writeup.md
+        - wtf_sql: CSAW-CTF-2018-Quals/web/wtf_sql/writeup.md
+
  
 # Theme
 theme:
