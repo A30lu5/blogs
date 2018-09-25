@@ -23,7 +23,6 @@ def application(environ, start_response):
             )
 
         app_args = [environ["PATH_INFO"], environ["QUERY_STRING"], post_data, None, None]
-
         try:
             cursor.callproc("app", app_args)
         except pymysql.Error as e:

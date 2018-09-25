@@ -1,0 +1,12 @@
+version: "3"
+services:
+  movie_club:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__movie_club:1.0
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "80:8000"
+    labels:
+      '80': http://IP:PORT

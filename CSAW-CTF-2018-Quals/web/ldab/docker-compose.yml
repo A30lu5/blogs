@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ldab:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__ldab:1.0
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    labels:
+      '80': http://IP:PORT

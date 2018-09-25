@@ -795,10 +795,10 @@ BEGIN
     IF admin THEN
         CALL get_cookie('email', u_email);
 
-        CALL has_priv('panel_create', can_create_panels);
         CALL has_priv('panel_view', can_view_panels);
+        CALL has_priv('panel_create', can_create_panels);
 
-        SET html = CONCAT(can_view_panels, can_create_panels);
+        SET html = '';
         SET rendered_table = '';
 
         IF can_create_panels THEN
@@ -824,7 +824,7 @@ BEGIN
 
                 CALL dump_table_html(table_name, rendered_table);
 
-                SET html = CONCAT(html, table_name, rendered_table, '<br/>');
+                SET html = CONCAT(html, rendered_table, '<br/>');
             END LOOP panels_loop;
         END IF;
 

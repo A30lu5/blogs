@@ -99,6 +99,55 @@ CSAW-CTF-2018-Quals:
       - tag: "objc structure"
       - hint: NULL
       - origin: CSAW18
+  web:
+    - ldab
+      - score: 50
+      - flag: 
+        -  flag{ld4p_inj3ction_i5_a_th1ng}
+      - pushflag: NULL
+      - env: ./web/ldab/docker-compose.yml
+      - attachment: NULL
+      - writeup-cn: 
+        - NULL
+      - writeup-en: 
+        - ./web/ldab/README.md
+      - description-cn: "dab"
+      - description-en: "dab"
+      - tag: "ldap"
+      - hint: NULL
+      - origin: CSAW18
+    - sso
+      - score: 100
+      - flag: 
+        -  flag{JsonWebTokensaretheeasieststorage-lessdataoptiononthemarket!theyrelyonsupersecureblockchainlevelencryptionfortheirmethods}
+      - pushflag: NULL
+      - env: ./web/sso/docker-compose.yml
+      - attachment: NULL
+      - writeup-cn: 
+        - NULL
+      - writeup-en: 
+        - ./web/sso/README.md
+      - description-cn: "Don't you love undocumented APIs , Be the admin you were always meant to be"
+      - description-en: "Don't you love undocumented APIs , Be the admin you were always meant to be"
+      - tag: "oauth2"
+      - hint: NULL
+      - origin: CSAW18
+    - wtf_sql
+      - score: 500
+      - flag: 
+        -  flag{b3tter_th@n_th3_prequels}
+      - pushflag: NULL
+      - env: ./web/wtf_sql/docker-compose.yml
+      - attachment: NULL
+      - writeup-cn: 
+        - NULL
+      - writeup-en: 
+        - ./web/wtf_sql/README.md
+      - description-cn: "Your mission is to read out the txt table in the flag database."
+      - description-en: "Your mission is to read out the txt table in the flag database."
+      - tag: "hash length extension attacks"
+      - hint: NULL
+      - origin: CSAW18
   crypto:
     - babycrypto:
       - score: 50
