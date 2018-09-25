@@ -1,0 +1,10 @@
+version: "3"
+services:
+  algebra:
+    build: .
+    image: 10.10.83.201:5001/csaw_2018__algebra:1.0
+    restart: unless-stopped
+    ports:
+      - "4324"
+    labels:
+      '4324': nc IP PORT

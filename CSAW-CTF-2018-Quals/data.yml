@@ -99,3 +99,153 @@ CSAW-CTF-2018-Quals:
       - tag: "objc structure"
       - hint: NULL
       - origin: CSAW18
+  crypto:
+    - babycrypto:
+      - score: 50
+      - flag: 
+        -  flag{diffie-hellman-g0ph3rzraOY1Jal4cHaFY9SWRyAQ6aH}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/babycrypto/ciphertext.txt
+      - writeup-cn: 
+        - ./crypto/babycrypto/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet
+
+                        single yeet yeeted with single yeet == 0
+
+                        yeeet
+
+                        what is yeet?
+
+                        yeet is yeet
+
+                        Yeetdate: yeeted yeet at yeet: 9:42 pm"
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - flatcrypt:
+      - score: 100
+      - flag: 
+        -  crime_doesnt_have_a_logo
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/flatcrypt/serv-distribute.py
+      - writeup-cn: 
+        - ./crypto/flatcrypt/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "no logos or branding for this bug. flag is not in flag format. flag is PROBLEM_KEY"
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - lowe:
+      - score: 200
+      - flag: 
+        -  flag{saltstacksaltcomit5dd304276ba5745ec21fc1e6686a0b28da29e6fc}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/lowe/attachment/attachment.zip
+      - writeup-cn: 
+        - ./crypto/lowe/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "I personally prefer Home Depot ,XOR Passes are the easiest way to use numbers to encrypt! By Kris Kwiatkowski, Cloudflare"
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - holywater:
+      - score: 400
+      - flag: 
+        - flag{cayley-do-you-love-me}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/holywater/attachment/attachment.zip
+      - writeup-cn: 
+        - ./crypto/holywater/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: NULL
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - collusion:
+      - score: 500
+      - flag: 
+        - flag{mission payload}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./crypto/collusion/attachment/attachment.zip
+      - writeup-cn: 
+        - ./crypto/collusion/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: NULL
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+  misc:
+    - bin_t:
+      - score: 50
+      - flag: 
+        - random
+      - pushflag: ./misc/bin_t/docker-compose.yml
+      - env: ./misc/bin_t/pushflag.sh
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/bin_t/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Binary trees let you do some interesting things. Can you balance a tree?
+                         Equal nodes should be inserted to the right of the parent node. You should balance the tree as you add nodes."
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - algebra:
+      - score: 100
+      - flag: 
+        - random
+      - pushflag: ./misc/algebra/docker-compose.yml
+      - env: ./misc/algebra/pushflag.sh
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/algebra/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Are you a real math wiz?"
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - TakeAnL:
+      - score: 200
+      - flag: 
+        - random
+      - pushflag: ./misc/TakeAnL/docker-compose.yml
+      - env: ./misc/TakeAnL/pushflag.sh
+      - attachment: NULL
+      - writeup-cn: 
+        - ./misc/TakeAnL/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Fill the grid with L's but avoid the marked spot for the W
+                         The origin is at (0,0) on the top left"
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+    - Short-Circuit:
+      - score: 75
+      - flag: 
+        - flag{owmyhand}
+      - pushflag: NULL
+      - env: NULL
+      - attachment: ./misc/Short-Circuit/short-circuit.jpg
+      - writeup-cn: 
+        - ./misc/Short-Circuit/writeup.md
+      - writeup-en: NULL
+      - description-cn: NULL
+      - description-en: "Start from the monkey's paw and work your way down the high voltage line, for every wire that is branches off has an element that is either on or off. Ignore the first bit. Standard flag format."
+      - tag: NULL
+      - hint: NULL
+      - origin: CSAW18
+      
