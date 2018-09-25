@@ -7,4 +7,4 @@ services:
     ports:
       - "80:8000"
     labels:
-      "80": http://IP:PORT
+      "8000": http://IP:PORT
