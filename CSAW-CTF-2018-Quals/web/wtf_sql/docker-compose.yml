@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     ports:
       - "80:9090"
+    labels: 
+      "9090": http://IP:PORT
     environment:
       - MYSQL_USER=app_sql
       - MYSQL_PASSWORD=app_sql
