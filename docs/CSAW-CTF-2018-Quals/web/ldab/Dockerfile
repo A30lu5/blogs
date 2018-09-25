@@ -1,10 +1,11 @@
 FROM ubuntu:14.04.3
 
 #Dont start slapd on install
+
 RUN echo "#!/bin/sh\nexit 101" >/usr/sbin/policy-rc.d
 RUN chmod +x /usr/sbin/policy-rc.d
-
-RUN apt-get update \
+RUN sed -i "s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list && \
+    apt-get update \
     && apt-get install -y php5 php5-ldap ldap-utils slapd apache2 supervisor
 
 env LDAP_ROOTPASS toor

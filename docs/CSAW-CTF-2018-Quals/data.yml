@@ -107,8 +107,7 @@ CSAW-CTF-2018-Quals:
       - pushflag: NULL
       - env: ./web/ldab/docker-compose.yml
       - attachment: NULL
-      - writeup-cn: 
-        - NULL
+      - writeup-cn: NULL
       - writeup-en: 
         - ./web/ldab/README.md
       - description-cn: "dab"
@@ -123,8 +122,7 @@ CSAW-CTF-2018-Quals:
       - pushflag: NULL
       - env: ./web/sso/docker-compose.yml
       - attachment: NULL
-      - writeup-cn: 
-        - NULL
+      - writeup-cn: NULL
       - writeup-en: 
         - ./web/sso/writeup.md
       - description-cn: "Don't you love undocumented APIs , Be the admin you were always meant to be"
@@ -139,8 +137,7 @@ CSAW-CTF-2018-Quals:
       - pushflag: NULL
       - env: ./web/wtf_sql/docker-compose.yml
       - attachment: NULL
-      - writeup-cn: 
-        - NULL
+      - writeup-cn: NULL
       - writeup-en: 
         - ./web/wtf_sql/writeup.md
       - description-cn: "Your mission is to read out the txt table in the flag database."
