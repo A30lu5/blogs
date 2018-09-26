@@ -52,7 +52,7 @@ nav:
         - turtles | objc对象构造: CSAW-CTF-2018-Quals/pwn/turtles/writeup.md
         - PLC | ret2syscall: CSAW-CTF-2018-Quals/pwn/plc/writeup.md
         - Alien Invasion | 数据越界: CSAW-CTF-2018-Quals/pwn/alien_invasion/writeup.md
-    - Reverse:
+      - Reverse:
         - A-Walk-Through-x86-Part-1: CSAW-CTF-2018-Quals/rev/A-Walk-Through-x86-Part-1/writeup.md
         - A-Walk-Through-x86-Part-2: CSAW-CTF-2018-Quals/rev/A-Walk-Through-x86-Part-2/writeup.md
         - A-Walk-Through-x86-Part-3: CSAW-CTF-2018-Quals/rev/A-Walk-Through-x86-Part-3/writeup.md
