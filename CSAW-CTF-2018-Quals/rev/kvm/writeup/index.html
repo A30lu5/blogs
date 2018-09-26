@@ -1,0 +1,1596 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DF Team CTF writeups">
+      
+      
+        <link rel="canonical" href="https://A30lu5.github.io/blogs/CSAW-CTF-2018-Quals/rev/kvm/writeup/">
+      
+      
+        <meta name="author" content="DF Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../..">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>kvm - DF Team</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://gstatic.loli.net" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.loli.net/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                DF Team
+              </span>
+              <span class="md-header-nav__topic">
+                kvm
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../.." title="Introduction" class="md-tabs__link md-tabs__link--active">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    DF Team
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
+    
+    <label class="md-nav__link" for="nav-1-2">
+      noxCTF2018
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-2">
+        noxCTF2018
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-1" type="checkbox" id="nav-1-2-1">
+    
+    <label class="md-nav__link" for="nav-1-2-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/believeMe/writeup/" title="believe Me" class="md-nav__link">
+      believe Me
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
+      The Name Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/GroceryList/writeup/" title="Grocery List" class="md-nav__link">
+      Grocery List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheBlackCanary/writeup/" title="The Black Canary" class="md-nav__link">
+      The Black Canary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-2" type="checkbox" id="nav-1-2-2">
+    
+    <label class="md-nav__link" for="nav-1-2-2">
+      reverse
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-2">
+        reverse
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/GuessTheString/writeup/" title="GuessTheString" class="md-nav__link">
+      GuessTheString
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/Att3nti0n/writeup/" title="Att3nti0n" class="md-nav__link">
+      Att3nti0n
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/avatar/writeup/" title="avatar" class="md-nav__link">
+      avatar
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-3" type="checkbox" id="nav-1-2-3">
+    
+    <label class="md-nav__link" for="nav-1-2-3">
+      web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-3">
+        web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/Reference/writeup/" title="Reference" class="md-nav__link">
+      Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/MyFileUploader/writeup/" title="MyFileUploader" class="md-nav__link">
+      MyFileUploader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/hiddenDOM/writeup/" title="hiddenDOM" class="md-nav__link">
+      hiddenDOM
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-4" type="checkbox" id="nav-1-2-4">
+    
+    <label class="md-nav__link" for="nav-1-2-4">
+      misc
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-4">
+        misc
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Blind_Date/writeup/" title="Blind Date" class="md-nav__link">
+      Blind Date
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Python_for_fun/writeup/" title="Python_for_fun" class="md-nav__link">
+      Python_for_fun
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Python_for_fun_2/writeup/" title="Python_for_fun_2" class="md-nav__link">
+      Python_for_fun_2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Read_Between_The_Lines/writeup/" title="Read_Between_The_Lines" class="md-nav__link">
+      Read_Between_The_Lines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Slippery_Situation/writeup/" title="Slippery_Situation" class="md-nav__link">
+      Slippery_Situation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-5" type="checkbox" id="nav-1-2-5">
+    
+    <label class="md-nav__link" for="nav-1-2-5">
+      crypto
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-5">
+        crypto
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Chop_Suey/writeup/" title="Chop_Suey" class="md-nav__link">
+      Chop_Suey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Decryptor/writeup/" title="Decryptor" class="md-nav__link">
+      Decryptor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Java_Corporation/writeup/" title="Java_Corporation" class="md-nav__link">
+      Java_Corporation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Plot_Twist/writeup/" title="Plot_Twist" class="md-nav__link">
+      Plot_Twist
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Trinity/writeup/" title="Trinity" class="md-nav__link">
+      Trinity
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/WTF/writeup/" title="WTF" class="md-nav__link">
+      WTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3" type="checkbox" id="nav-1-3" checked>
+    
+    <label class="md-nav__link" for="nav-1-3">
+      CSAW-CTF-2018-Quals
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-3">
+        CSAW-CTF-2018-Quals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-1" type="checkbox" id="nav-1-3-1">
+    
+    <label class="md-nav__link" for="nav-1-3-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/bigboy/writeup/" title="bigboy | 简单栈溢出" class="md-nav__link">
+      bigboy | 简单栈溢出
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/get_it/writeup/" title="get it | 简单栈溢出" class="md-nav__link">
+      get it | 简单栈溢出
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/shellpointcode/writeup/" title="shellpointcode | 13字节的shellcode" class="md-nav__link">
+      shellpointcode | 13字节的shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/doubletrouble/writeup/" title="doubletrouble | 双精度浮点排序" class="md-nav__link">
+      doubletrouble | 双精度浮点排序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/turtles/writeup/" title="turtles | objc对象构造" class="md-nav__link">
+      turtles | objc对象构造
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/plc/writeup/" title="PLC | ret2syscall" class="md-nav__link">
+      PLC | ret2syscall
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/alien_invasion/writeup/" title="Alien Invasion | 数据越界" class="md-nav__link">
+      Alien Invasion | 数据越界
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-2" type="checkbox" id="nav-1-3-2" checked>
+    
+    <label class="md-nav__link" for="nav-1-3-2">
+      Reverse
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-2">
+        Reverse
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../A-Walk-Through-x86-Part-1/writeup/" title="A-Walk-Through-x86-Part-1" class="md-nav__link">
+      A-Walk-Through-x86-Part-1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../A-Walk-Through-x86-Part-2/writeup/" title="A-Walk-Through-x86-Part-2" class="md-nav__link">
+      A-Walk-Through-x86-Part-2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../A-Walk-Through-x86-Part-3/writeup/" title="A-Walk-Through-x86-Part-3" class="md-nav__link">
+      A-Walk-Through-x86-Part-3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1337/writeup/" title="1337" class="md-nav__link">
+      1337
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="kvm" class="md-nav__link md-nav__link--active">
+      kvm
+    </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-3" type="checkbox" id="nav-1-3-3">
+    
+    <label class="md-nav__link" for="nav-1-3-3">
+      Crypto
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-3">
+        Crypto
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/babycrypto/writeup/" title="babycrypto" class="md-nav__link">
+      babycrypto
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/flatcrypt/writeup/" title="flatcrypt" class="md-nav__link">
+      flatcrypt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/lowe/writeup/" title="lowe" class="md-nav__link">
+      lowe
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/holywater/writeup/" title="holywater" class="md-nav__link">
+      holywater
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/collusion/writeup/" title="collusion" class="md-nav__link">
+      collusion
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-4" type="checkbox" id="nav-1-3-4">
+    
+    <label class="md-nav__link" for="nav-1-3-4">
+      Misc
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-4">
+        Misc
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/bin_t/writeup/" title="bin_t" class="md-nav__link">
+      bin_t
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/algebra/writeup/" title="algebra" class="md-nav__link">
+      algebra
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/TakeAnL/writeup/" title="TakeAnL" class="md-nav__link">
+      TakeAnL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/Short-Circuit/writeup/" title="Short-Circuit" class="md-nav__link">
+      Short-Circuit
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-5" type="checkbox" id="nav-1-3-5">
+    
+    <label class="md-nav__link" for="nav-1-3-5">
+      Web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-5">
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/ldab/" title="ldab" class="md-nav__link">
+      ldab
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/movie_club/writeup/" title="movie_club" class="md-nav__link">
+      movie_club
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/nvs/" title="nvs" class="md-nav__link">
+      nvs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/sso/writeup/" title="sso" class="md-nav__link">
+      sso
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/wtf_sql/writeup/" title="wtf_sql" class="md-nav__link">
+      wtf_sql
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/CSAW-CTF-2018-Quals/rev/kvm/writeup.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>kvm</h1>
+                
+                <p>ida打开该程序，可以看到打开了一个<code>/dev/kvm</code>的设备，并通过ioctl传递信息
+<img alt="" src="../files/1.png" /></p>
+<p>strace跟踪下call</p>
+<p><div class="codehilite"><pre><span></span>$ strace -v ./challenge
+openat(AT_FDCWD, &quot;/dev/kvm&quot;, O_RDWR)    = 3
+ioctl(3, KVM_GET_API_VERSION, 0)        = 12
+ioctl(3, KVM_CREATE_VM, 0)              = 4
+ioctl(4, KVM_SET_TSS_ADDR, 0xfffbd000)  = 0
+mmap(NULL, 2097152, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x7fd00ef77000
+madvise(0x7fd00ef77000, 2097152, MADV_MERGEABLE) = 0
+ioctl(4, KVM_SET_USER_MEMORY_REGION, {slot=0, flags=0, guest_phys_addr=0, memory_size=2097152, userspace_addr=0x7fd00ef77000}) = 0
+ioctl(4, KVM_CREATE_VCPU, 0)            = 5
+ioctl(3, KVM_GET_VCPU_MMAP_SIZE, 0)     = 12288
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_SHARED, 5, 0) = 0x7fd00f37a000
+ioctl(5, KVM_GET_SREGS, {cs={base=0xffff0000, limit=65535, selector=61440, type=11, present=1, dpl=0, db=0, s=1, l=0, g=0, avl=0}, ds={base=0, limit=65535, selector=0, type=3, present=1, dpl=0, db=0, s=1, l=0, g=0, avl=0}, es={base=0, limit=65535, selector=0, type=3, present=1, dpl=0, db=0, s=1, l=0, g=0, avl=0}, fs={base=0, limit=65535, selector=0, type=3, present=1, dpl=0, db=0, s=1, l=0, g=0, avl=0}, gs={base=0, limit=65535, selector=0, type=3, present=1, dpl=0, db=0, s=1, l=0, g=0, avl=0}, ss={base=0, limit=65535, selector=0, type=3, present=1, dpl=0, db=0, s=1, l=0, g=0, avl=0}, tr={base=0, limit=65535, selector=0, type=11, present=1, dpl=0, db=0, s=0, l=0, g=0, avl=0}, ldt={base=0, limit=65535, selector=0, type=2, present=1, dpl=0, db=0, s=0, l=0, g=0, avl=0}, gdt={base=0, limit=65535}, idt={base=0, limit=65535}, cr0=1610612752, cr2=0, cr3=0, cr4=0, cr8=0, efer=0, apic_base=0xfee00900, interrupt_bitmap=[0, 0, 0, 0]}) = 0
+ioctl(5, KVM_SET_SREGS, {cs={base=0, limit=4294967295, selector=8, type=11, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, ds={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, es={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, fs={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, gs={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, ss={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, tr={base=0, limit=65535, selector=0, type=11, present=1, dpl=0, db=0, s=0, l=0, g=0, avl=0}, ldt={base=0, limit=65535, selector=0, type=2, present=1, dpl=0, db=0, s=0, l=0, g=0, avl=0}, gdt={base=0, limit=65535}, idt={base=0, limit=65535}, cr0=2147811379, cr2=0, cr3=8192, cr4=32, cr8=0, efer=1280, apic_base=0xfee00900, interrupt_bitmap=[0, 0, 0, 0]}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0, rbx=0, rcx=0, rdx=0, rsi=0, rdi=0, rsp=0x200000, rbp=0, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0, rflags=0x2}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+fstat(0, {st_dev=makedev(0, 26), st_ino=4, st_mode=S_IFCHR|0620, st_nlink=1, st_uid=1000, st_gid=5, st_blksize=1024, st_blocks=0, st_rdev=makedev(136, 1), st_atime=1537036280 /* 2018-09-16T02:31:20.548336166+0800 */, st_atime_nsec=548336166, st_mtime=1537036280 /* 2018-09-16T02:31:20.548336166+0800 */, st_mtime_nsec=548336166, st_ctime=1537021307 /* 2018-09-15T22:21:47.548336166+0800 */, st_ctime_nsec=548336166}) = 0
+brk(NULL)                               = 0x55d7d8728000
+brk(0x55d7d8749000)                     = 0x55d7d8749000
+read(0
+</pre></div>
+参考<a href="https://www.kernel.org/doc/Documentation/virtual/kvm/api.txt">kvm api</a></p>
+<p><code>openat(AT_FDCWD, &quot;/dev/kvm&quot;, O_RDWR) = 3</code></p>
+<p>打开句柄</p>
+<p><code>ioctl(3, KVM_GET_API_VERSION, 0) = 12</code></p>
+<p>检查kvm api的版本</p>
+<p><code>ioctl(3, KVM_CREATE_VM, 0) = 4</code></p>
+<p>创建一个vm，fd为4</p>
+<div class="codehilite"><pre><span></span>mmap(NULL, 2097152, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x7f1cebda8000
+madvise(0x7f1cebda8000, 2097152, MADV_MERGEABLE) = 0
+ioctl(4, KVM_SET_USER_MEMORY_REGION, {slot=0, flags=0, guest_phys_addr=0, memory_size=2097152, userspace_addr=0x7f1cebda8000}) = 0
+</pre></div>
+
+<p>给vm分配内存空间</p>
+<p><code>ioctl(4, KVM_CREATE_VCPU, 0) = 5</code></p>
+<p>创建vcpu</p>
+<div class="codehilite"><pre><span></span>ioctl(3, KVM_GET_VCPU_MMAP_SIZE, 0)     = 12288
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_SHARED, 5, 0) = 0x7f1cec1ab000
+</pre></div>
+
+<p>创建vcpu需要的内存空间</p>
+<p><code>ioctl(5, KVM_SET_SREGS, {cs={base=0, limit=4294967295, selector=8, type=11, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, ds={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, es={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, fs={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, gs={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, ss={base=0, limit=4294967295, selector=16, type=3, present=1, dpl=0, db=0, s=1, l=1, g=1, avl=0}, tr={base=0, limit=65535, selector=0, type=11, present=1, dpl=0, db=0, s=0, l=0, g=0, avl=0}, ldt={base=0, limit=65535, selector=0, type=2, present=1, dpl=0, db=0, s=0, l=0, g=0, avl=0}, gdt={base=0, limit=65535}, idt={base=0, limit=65535}, cr0=2147811379, cr2=0, cr3=8192, cr4=32, cr8=0, efer=1280, apic_base=0xfee00900, interrupt_bitmap=[0, 0, 0, 0]}) = 0</code></p>
+<p><code>ioctl(5, KVM_SET_REGS, {rax=0, rbx=0, rcx=0, rdx=0, rsi=0, rdi=0, rsp=0x200000, rbp=0, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0, rflags=0x2}) = 0</code></p>
+<p>初始化寄存器和context进程上下文的内容</p>
+<p><code>ioctl(5, KVM_RUN, 0) = 0</code></p>
+<p>跑kvm了，vm起来之后程序会接受输入，并且每次执行下
+<code>ioctl(5, KVM_RUN, 0)</code></p>
+<p>用frace去跟踪kvm</p>
+<p><div class="codehilite"><pre><span></span># echo 1 &gt; /sys/kernel/debug/tracing/events/kvm/enable
+# cat /sys/kernel/debug/tracing/trace_pipe
+       challenge-24797 [003] .... 83184.290314: kvm_fpu: load
+       challenge-24797 [003] .... 83184.290322: kvm_pio: pio_read at 0xe9 size 1 count 1 val 0x31
+       challenge-24797 [003] d..1 83184.290326: kvm_entry: vcpu 0
+       challenge-24797 [003] .... 83184.290332: kvm_exit: reason EXTERNAL_INTERRUPT rip 0x100 info 0 800000f6
+       challenge-24797 [003] d..1 83184.290334: kvm_entry: vcpu 0
+       challenge-24797 [003] .... 83184.290337: kvm_exit: reason IO_INSTRUCTION rip 0xff info e90008 0
+       challenge-24797 [003] .... 83184.290339: kvm_fpu: unload
+       challenge-24797 [003] .... 83184.290341: kvm_userspace_exit: reason KVM_EXIT_IO (2)
+       challenge-24797 [003] .... 83184.290380: kvm_fpu: load
+       challenge-24797 [003] .... 83184.290381: kvm_pio: pio_read at 0xe9 size 1 count 1 val 0x32
+       challenge-24797 [003] d..1 83184.290382: kvm_entry: vcpu 0
+       challenge-24797 [003] .... 83184.290384: kvm_exit: reason IO_INSTRUCTION rip 0xff info e90008 0
+       challenge-24797 [003] .... 83184.290385: kvm_fpu: unload
+       challenge-24797 [003] .... 83184.290386: kvm_userspace_exit: reason KVM_EXIT_IO (2)
+       challenge-24797 [003] .... 83184.290413: kvm_fpu: load
+       challenge-24797 [003] .... 83184.290413: kvm_pio: pio_read at 0xe9 size 1 count 1 val 0x33
+       challenge-24797 [003] d..1 83184.290414: kvm_entry: vcpu 0
+       challenge-24797 [003] .... 83184.290416: kvm_exit
+</pre></div>
+KVM 调用 pio_read() 接收输入</p>
+<p>看cs初始化的内容，我们可以知道kvm是从地址0开始执行的。</p>
+<p>通过ltrace跟踪可以看到
+有部分内容被拷贝到kvm的0地址。</p>
+<p><div class="codehilite"><pre><span></span>$ ltrace ./challenge
+memcpy(0x7f3f247a9000, &quot;UH\211\345H\201\354\020(\0\0H\215\205\360\327\377\377\276\0(\0\0H\211\307\350\262\0\0\0\307&quot;..., 4888) = 0x7f3f247a9000
+</pre></div>
+长度为 4888</p>
+<p><img alt="" src="../files/2.png" /></p>
+<p>提取这部分二进制，反编译看下</p>
+<p><img alt="" src="../files/3.png" />
+<img alt="" src="../files/4.png" />
+<img alt="" src="../files/5.png" />
+<img alt="" src="../files/6.png" /></p>
+<p>通过分析可以看到在0x1e0中进行了check</p>
+<p><img alt="" src="../files/7.png" /></p>
+<p>vm会很快退出，然后程序会修改它的rip然后重新启动</p>
+<p><img alt="" src="../files/8.png" /></p>
+<p>strace跟踪看下</p>
+<div class="codehilite"><pre><span></span>$ strace -vo log ./challenge &lt; input
+$ less log
+...
+ioctl(5, KVM_RUN, 0)                    = 0
+ioctl(5, KVM_GET_REGS, {rax=0x3493310d, rbx=0, rcx=0x1fffe7, rdx=0xe9, rsi=0x1300, rdi=0xffffffff, rsp=0x1fd778, rbp=0x1fd7d8, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x202, rflags=0x6}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0x3493310d, rbx=0, rcx=0x1fffe7, rdx=0xe9, rsi=0x1300, rdi=0xffffffff, rsp=0x1fd778, rbp=0x1fd7d8, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x32c, rflags=0x6}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+ioctl(5, KVM_GET_REGS, {rax=0x5de72dd, rbx=0, rcx=0x5de72dd, rdx=0xffffffff, rsi=0x1300, rdi=0xffffffff, rsp=0x1fd778, rbp=0x1fd7d8, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x342, rflags=0x46}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0x5de72dd, rbx=0, rcx=0x5de72dd, rdx=0xffffffff, rsi=0x1300, rdi=0xffffffff, rsp=0x1fd778, rbp=0x1fd7d8, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x347, rflags=0x46}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+...
+ioctl(5, KVM_GET_REGS, {rax=0x968630d0, rbx=0, rcx=0x5de72dd, rdx=0x30, rsi=0xae0, rdi=0x30, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x342, rflags=0x13}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0x968630d0, rbx=0, rcx=0x5de72dd, rdx=0x30, rsi=0xae0, rdi=0x30, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x400, rflags=0x13}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+ioctl(5, KVM_GET_REGS, {rax=0xef5bdd13, rbx=0, rcx=0x8f6e2804, rdx=0xae0, rsi=0x30, rdi=0x61, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x41d, rflags=0x97}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0xef5bdd13, rbx=0, rcx=0x8f6e2804, rdx=0xae0, rsi=0x30, rdi=0x61, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x435, rflags=0x97}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+ioctl(5, KVM_GET_REGS, {rax=0x5f291a64, rbx=0, rcx=0x8f6e2804, rdx=0xae0, rsi=0x30, rdi=0x61, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x43b, rflags=0x97}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0x5f291a64, rbx=0, rcx=0x8f6e2804, rdx=0xae0, rsi=0x30, rdi=0x61, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x441, rflags=0x97}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+ioctl(5, KVM_GET_REGS, {rax=0xc50b6060, rbx=0, rcx=0x8f6e2804, rdx=0xae0, rsi=0x30, rdi=0x61, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x44e, rflags=0x97}) = 0
+ioctl(5, KVM_SET_REGS, {rax=0xc50b6060, rbx=0, rcx=0x8f6e2804, rdx=0xae0, rsi=0x30, rdi=0x61, rsp=0x1fd628, rbp=0x1fd688, r8=0, r9=0, r10=0, r11=0, r12=0, r13=0, r14=0, r15=0, rip=0x454, rflags=0x97}) = 0
+ioctl(5, KVM_RUN, 0)                    = 0
+</pre></div>
+
+<p>程序会根据rax的值来修改rip,检测的数组位于0x2020A0</p>
+<p><img alt="" src="../files/9.png" /></p>
+<p>对应关系如下：</p>
+<div class="codehilite"><pre><span></span>rax        =&gt;  rip
+0x3493310d =&gt; 0x32c
+0x5de72dd  =&gt; 0x347
+0x968630d0 =&gt; 0x400
+0xef5bdd13 =&gt; 0x435
+0x5f291a64 =&gt; 0x441
+0xc50b6060 =&gt; 0x454
+0x8aeef509 =&gt; 0x389
+0x9d1fe433 =&gt; 0x3ed
+0x54a15b03 =&gt; 0x376
+0x8f6e2804 =&gt; 0x422
+0x59c33d0f =&gt; 0x3e1
+0x64d8a529 =&gt; 0x3b8
+0x5de72dd  =&gt; 0x347
+0xfc2ff49f =&gt; 0x3ce
+</pre></div>
+
+<p>patch所有的halt，然后ida看下</p>
+<p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">__noreturn</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">a1</span><span class="p">[</span><span class="mi">10252</span><span class="p">];</span> <span class="c1">// [rsp+0h] [rbp-2810h]</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [rsp+280Ch] [rbp-4h]</span>
+
+  <span class="n">gets</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">10240</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mh">0x27FF</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">generateBuf1</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">rootNode</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Wrong!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+      <span class="k">goto</span> <span class="n">returnZero</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">bufs_unequal</span><span class="p">(</span><span class="mh">0x54AuLL</span><span class="p">,</span> <span class="n">buf1</span><span class="p">,</span> <span class="n">buf2</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Correct!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="nl">returnZero</span><span class="p">:</span>
+  <span class="n">__halt</span><span class="p">();</span>
+  <span class="n">JUMPOUT</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">j_returnZero</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// return 1 if found</span>
+<span class="kt">int</span> <span class="kr">__fastcall</span> <span class="nf">generateBuf1</span><span class="p">(</span><span class="kt">char</span> <span class="n">charFromInput</span><span class="p">,</span> <span class="n">tree_t</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">SLOBYTE</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>             <span class="c1">// leaf</span>
+    <span class="k">return</span> <span class="n">SLOBYTE</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="n">charFromInput</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">generateBuf1</span><span class="p">(</span><span class="n">charFromInput</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">appendBit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">generateBuf1</span><span class="p">(</span><span class="n">charFromInput</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">appendBit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">struct</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="mi">16</span><span class="p">)))</span> <span class="n">tree_t</span>
+<span class="p">{</span>
+  <span class="n">_QWORD</span> <span class="n">value</span><span class="p">;</span>
+  <span class="n">tree_t</span> <span class="o">*</span><span class="n">left</span><span class="p">;</span>
+  <span class="n">tree_t</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+可以看到是根据我们的输入去遍历二叉树，遍历的叶子节点去填充Buf,然后这个Buf跟正确的值去比较。
+爆破行不通，最后尝试根据一些已知的单词手动替换二进制字符串</p>
+<div class="codehilite"><pre><span></span>flag.txt11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111000000000000
+1101101101100001110100000000001100100010110010000010000000000110010001011001000001000000000000000000000000000100
+0100110010110000001000001000011101101100000100001110000100010110110110110100001100011001101100000111101011111000
+0111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111011100101
+1011100100110101101011110111101111001010001011010011101100101111111111111111111111111111110010100010110100111011
+0010111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+1111111111111111111111111111111111111111111111111111111111111111111111111111flag{who would win?  100 ctf teams o
+r 1 obfuscat3d boi?}0011101011111111
+</pre></div>
+
+<p>最终得到<code>flag{who would win?  100 ctf teams or 1 obfuscat3d boi?}</code></p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;000&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="s1">&#39;000100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;}&#39;</span><span class="p">:</span> <span class="s1">&#39;0100100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;1100100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;10100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;01100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="s1">&#39;11100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;000010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;100010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="s1">&#39;010010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;110010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;?&#39;</span><span class="p">:</span> <span class="s1">&#39;0001010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;1001010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;0101010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="s1">&#39;1101010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="s1">&#39;0011010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="s1">&#39;1011010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="s1">&#39;00111010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.&#39;</span><span class="p">:</span> <span class="s1">&#39;10111010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;01111010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;11111010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;m&#39;</span><span class="p">:</span> <span class="s1">&#39;00000110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="s1">&#39;10000110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="s1">&#39;01000110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;{&#39;</span><span class="p">:</span> <span class="s1">&#39;11000110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;100110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="s1">&#39;010110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;110110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;0001110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="s1">&#39;1001110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="s1">&#39;0101110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="s1">&#39;1101110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39; &#39;</span><span class="p">:</span> <span class="s1">&#39;11110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">: &#39;</span><span class="mi">1</span><span class="s1">&#39;,</span>
+<span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dump&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x580</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x54a</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">146</span><span class="p">]</span>
+
+<span class="n">binstr</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">binstr</span> <span class="o">+=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">b</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">for i in range(2000):</span>
+<span class="sd">    matched = []</span>
+<span class="sd">    for char, code in table.items():</span>
+<span class="sd">        if binstr.startswith(code):</span>
+<span class="sd">            matched.append((code, char))</span>
+<span class="sd">    if len(matched) == 0:</span>
+<span class="sd">        binstr = binstr[1:]</span>
+<span class="sd">        continue</span>
+<span class="sd">    code, char = min(matched, key=lambda t: t[0])</span>
+<span class="sd">    binstr = binstr.replace(code, &#39;&#39;, 1)</span>
+<span class="sd">    flag += char</span>
+<span class="sd">    print(flag, binstr)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">rep</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="n">table</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+
+<span class="c1">#print(binstr)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;flag.txt&quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;flag{&quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;would &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;who &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;or &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;win?  &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;obfuscat3d &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot; ctf &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;teams &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;1 &quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;boi?&quot;</span><span class="p">)</span>
+<span class="n">binstr</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">binstr</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">binstr</span><span class="p">)</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                <!-- Set from config but allow override -->
+   
+
+<hr>
+
+<!-- Comments Integration -->
+ 
+<h2 id="__comments">评论</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '708ce3b6562eb67f799f',
+        clientSecret: 'fa962a493d91e7d25852c1562cf3972825e0767e',
+        repo: 'blog_comment',
+        owner: 'DF-11A',
+        admin: ['4uuu', 'DF-11A'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script> 
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../1337/writeup/" title="1337" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                1337
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../../crypto/babycrypto/writeup/" title="babycrypto" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                babycrypto
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2018 DF Team
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.a26c1c19.js"></script>
+      
+        
+        
+          
+          <script src="../../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../_static/js/extra.js"></script>
+      
+        <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

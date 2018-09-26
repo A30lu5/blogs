@@ -1,0 +1,1433 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DF Team CTF writeups">
+      
+      
+        <link rel="canonical" href="https://A30lu5.github.io/blogs/CSAW-CTF-2018-Quals/rev/A-Walk-Through-x86-Part-2/writeup/">
+      
+      
+        <meta name="author" content="DF Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../..">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>A-Walk-Through-x86-Part-2 - DF Team</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://gstatic.loli.net" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.loli.net/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                DF Team
+              </span>
+              <span class="md-header-nav__topic">
+                A-Walk-Through-x86-Part-2
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../.." title="Introduction" class="md-tabs__link md-tabs__link--active">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://A30lu5.github.io/blogs/" title="DF Team" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    DF Team
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/A30lu5/blogs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      A30lu5/blogs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
+    
+    <label class="md-nav__link" for="nav-1-2">
+      noxCTF2018
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-2">
+        noxCTF2018
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-1" type="checkbox" id="nav-1-2-1">
+    
+    <label class="md-nav__link" for="nav-1-2-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/believeMe/writeup/" title="believe Me" class="md-nav__link">
+      believe Me
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheNameCalculator/writeup/" title="The Name Calculator" class="md-nav__link">
+      The Name Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/GroceryList/writeup/" title="Grocery List" class="md-nav__link">
+      Grocery List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/pwn/TheBlackCanary/writeup/" title="The Black Canary" class="md-nav__link">
+      The Black Canary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-2" type="checkbox" id="nav-1-2-2">
+    
+    <label class="md-nav__link" for="nav-1-2-2">
+      reverse
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-2">
+        reverse
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/GuessTheString/writeup/" title="GuessTheString" class="md-nav__link">
+      GuessTheString
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/Att3nti0n/writeup/" title="Att3nti0n" class="md-nav__link">
+      Att3nti0n
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/reverse/avatar/writeup/" title="avatar" class="md-nav__link">
+      avatar
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-3" type="checkbox" id="nav-1-2-3">
+    
+    <label class="md-nav__link" for="nav-1-2-3">
+      web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-3">
+        web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/Reference/writeup/" title="Reference" class="md-nav__link">
+      Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/MyFileUploader/writeup/" title="MyFileUploader" class="md-nav__link">
+      MyFileUploader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/web/hiddenDOM/writeup/" title="hiddenDOM" class="md-nav__link">
+      hiddenDOM
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-4" type="checkbox" id="nav-1-2-4">
+    
+    <label class="md-nav__link" for="nav-1-2-4">
+      misc
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-4">
+        misc
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Blind_Date/writeup/" title="Blind Date" class="md-nav__link">
+      Blind Date
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Python_for_fun/writeup/" title="Python_for_fun" class="md-nav__link">
+      Python_for_fun
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Python_for_fun_2/writeup/" title="Python_for_fun_2" class="md-nav__link">
+      Python_for_fun_2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Read_Between_The_Lines/writeup/" title="Read_Between_The_Lines" class="md-nav__link">
+      Read_Between_The_Lines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/misc/Slippery_Situation/writeup/" title="Slippery_Situation" class="md-nav__link">
+      Slippery_Situation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2-5" type="checkbox" id="nav-1-2-5">
+    
+    <label class="md-nav__link" for="nav-1-2-5">
+      crypto
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2-5">
+        crypto
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Chop_Suey/writeup/" title="Chop_Suey" class="md-nav__link">
+      Chop_Suey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Decryptor/writeup/" title="Decryptor" class="md-nav__link">
+      Decryptor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Java_Corporation/writeup/" title="Java_Corporation" class="md-nav__link">
+      Java_Corporation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Plot_Twist/writeup/" title="Plot_Twist" class="md-nav__link">
+      Plot_Twist
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/Trinity/writeup/" title="Trinity" class="md-nav__link">
+      Trinity
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../noxCTF2018/crypto/WTF/writeup/" title="WTF" class="md-nav__link">
+      WTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3" type="checkbox" id="nav-1-3" checked>
+    
+    <label class="md-nav__link" for="nav-1-3">
+      CSAW-CTF-2018-Quals
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-3">
+        CSAW-CTF-2018-Quals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-1" type="checkbox" id="nav-1-3-1">
+    
+    <label class="md-nav__link" for="nav-1-3-1">
+      Pwn
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-1">
+        Pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/bigboy/writeup/" title="bigboy | 简单栈溢出" class="md-nav__link">
+      bigboy | 简单栈溢出
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/get_it/writeup/" title="get it | 简单栈溢出" class="md-nav__link">
+      get it | 简单栈溢出
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/shellpointcode/writeup/" title="shellpointcode | 13字节的shellcode" class="md-nav__link">
+      shellpointcode | 13字节的shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/doubletrouble/writeup/" title="doubletrouble | 双精度浮点排序" class="md-nav__link">
+      doubletrouble | 双精度浮点排序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/turtles/writeup/" title="turtles | objc对象构造" class="md-nav__link">
+      turtles | objc对象构造
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/plc/writeup/" title="PLC | ret2syscall" class="md-nav__link">
+      PLC | ret2syscall
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pwn/alien_invasion/writeup/" title="Alien Invasion | 数据越界" class="md-nav__link">
+      Alien Invasion | 数据越界
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-2" type="checkbox" id="nav-1-3-2" checked>
+    
+    <label class="md-nav__link" for="nav-1-3-2">
+      Reverse
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-2">
+        Reverse
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../A-Walk-Through-x86-Part-1/writeup/" title="A-Walk-Through-x86-Part-1" class="md-nav__link">
+      A-Walk-Through-x86-Part-1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="A-Walk-Through-x86-Part-2" class="md-nav__link md-nav__link--active">
+      A-Walk-Through-x86-Part-2
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../A-Walk-Through-x86-Part-3/writeup/" title="A-Walk-Through-x86-Part-3" class="md-nav__link">
+      A-Walk-Through-x86-Part-3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1337/writeup/" title="1337" class="md-nav__link">
+      1337
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kvm/writeup/" title="kvm" class="md-nav__link">
+      kvm
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-3" type="checkbox" id="nav-1-3-3">
+    
+    <label class="md-nav__link" for="nav-1-3-3">
+      Crypto
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-3">
+        Crypto
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/babycrypto/writeup/" title="babycrypto" class="md-nav__link">
+      babycrypto
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/flatcrypt/writeup/" title="flatcrypt" class="md-nav__link">
+      flatcrypt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/lowe/writeup/" title="lowe" class="md-nav__link">
+      lowe
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/holywater/writeup/" title="holywater" class="md-nav__link">
+      holywater
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../crypto/collusion/writeup/" title="collusion" class="md-nav__link">
+      collusion
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-4" type="checkbox" id="nav-1-3-4">
+    
+    <label class="md-nav__link" for="nav-1-3-4">
+      Misc
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-4">
+        Misc
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/bin_t/writeup/" title="bin_t" class="md-nav__link">
+      bin_t
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/algebra/writeup/" title="algebra" class="md-nav__link">
+      algebra
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/TakeAnL/writeup/" title="TakeAnL" class="md-nav__link">
+      TakeAnL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/Short-Circuit/writeup/" title="Short-Circuit" class="md-nav__link">
+      Short-Circuit
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3-5" type="checkbox" id="nav-1-3-5">
+    
+    <label class="md-nav__link" for="nav-1-3-5">
+      Web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-3-5">
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/ldab/" title="ldab" class="md-nav__link">
+      ldab
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/movie_club/writeup/" title="movie_club" class="md-nav__link">
+      movie_club
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/nvs/" title="nvs" class="md-nav__link">
+      nvs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/sso/writeup/" title="sso" class="md-nav__link">
+      sso
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/wtf_sql/writeup/" title="wtf_sql" class="md-nav__link">
+      wtf_sql
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/A30lu5/blogs/blob/master/docs/CSAW-CTF-2018-Quals/rev/A-Walk-Through-x86-Part-2/writeup.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>A-Walk-Through-x86-Part-2</h1>
+                
+                <p>在radare中打开二进制文件</p>
+<div class="codehilite"><pre><span></span><span class="p">[</span><span class="mh">0x00000000</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">e</span> <span class="k">asm</span><span class="p">.</span><span class="n">arch</span> <span class="o">=</span> <span class="n">x86</span>
+<span class="p">[</span><span class="mh">0x00000000</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">e</span> <span class="k">asm</span><span class="p">.</span><span class="n">bits</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="p">[</span><span class="mo">0000</span><span class="o">:</span><span class="mo">0000</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">s</span> <span class="mh">0x6000</span>
+<span class="p">[</span><span class="mo">0000</span><span class="o">:</span><span class="mi">6000</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">pd</span> <span class="mi">61</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6000</span>      <span class="n">f4</span>             <span class="n">hlt</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6001</span>      <span class="n">e492</span>           <span class="n">in</span> <span class="n">al</span><span class="p">,</span> <span class="mh">0x92</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6003</span>      <span class="mi">0</span><span class="n">c02</span>           <span class="n">or</span> <span class="n">al</span><span class="p">,</span> <span class="mi">2</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6005</span>      <span class="n">e692</span>           <span class="n">out</span> <span class="mh">0x92</span><span class="p">,</span> <span class="n">al</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6007</span>      <span class="mi">31</span><span class="n">c0</span>           <span class="n">xor</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6009</span>      <span class="mi">8</span><span class="n">ed0</span>           <span class="n">mov</span> <span class="n">ss</span><span class="p">,</span> <span class="n">ax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">600</span><span class="n">b</span>      <span class="n">bc0160</span>         <span class="n">mov</span> <span class="n">sp</span><span class="p">,</span> <span class="mh">0x6001</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">600</span><span class="n">e</span>      <span class="mi">8</span><span class="n">ed8</span>           <span class="n">mov</span> <span class="n">ds</span><span class="p">,</span> <span class="n">ax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6010</span>      <span class="mi">8</span><span class="n">ec0</span>           <span class="n">mov</span> <span class="n">es</span><span class="p">,</span> <span class="n">ax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6012</span>      <span class="mi">8</span><span class="n">ee0</span>           <span class="n">mov</span> <span class="n">fs</span><span class="p">,</span> <span class="n">ax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6014</span>      <span class="mi">8</span><span class="n">ee8</span>           <span class="n">mov</span> <span class="n">gs</span><span class="p">,</span> <span class="n">ax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6016</span>      <span class="n">fc</span>             <span class="n">cld</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6017</span>      <span class="mi">66</span><span class="n">bf00000000</span>   <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="err">┌─</span><span class="o">&lt;</span> <span class="mo">0000</span><span class="o">:</span><span class="mi">601</span><span class="n">d</span>      <span class="n">eb07</span>           <span class="n">jmp</span> <span class="mh">0x6026</span>
+        <span class="err">│</span>   <span class="mo">0000</span><span class="o">:</span><span class="mf">601f</span>      <span class="mi">90</span>             <span class="n">nop</span>
+        <span class="err">│</span>   <span class="mo">0000</span><span class="o">:</span><span class="mi">6020</span>      <span class="mo">0000</span>           <span class="n">add</span> <span class="n">byte</span> <span class="p">[</span><span class="n">bx</span> <span class="o">+</span> <span class="n">si</span><span class="p">],</span> <span class="n">al</span>
+        <span class="err">│</span>   <span class="mo">0000</span><span class="o">:</span><span class="mi">6022</span>      <span class="mo">0000</span>           <span class="n">add</span> <span class="n">byte</span> <span class="p">[</span><span class="n">bx</span> <span class="o">+</span> <span class="n">si</span><span class="p">],</span> <span class="n">al</span>
+        <span class="err">│</span>   <span class="mo">0000</span><span class="o">:</span><span class="mi">6024</span>      <span class="mo">0000</span>           <span class="n">add</span> <span class="n">byte</span> <span class="p">[</span><span class="n">bx</span> <span class="o">+</span> <span class="n">si</span><span class="p">],</span> <span class="n">al</span>
+        <span class="err">└─</span><span class="o">&gt;</span> <span class="mo">0000</span><span class="o">:</span><span class="mi">6026</span>      <span class="mi">57</span>             <span class="n">push</span> <span class="n">di</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6027</span>      <span class="mi">66</span><span class="n">b900100000</span>   <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span> <span class="mh">0x1000</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">602</span><span class="n">d</span>      <span class="mi">6631</span><span class="n">c0</span>         <span class="n">xor</span> <span class="n">eax</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6030</span>      <span class="n">fc</span>             <span class="n">cld</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6031</span>      <span class="n">f366ab</span>         <span class="n">rep</span> <span class="n">stosd</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span><span class="p">],</span> <span class="n">eax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6034</span>      <span class="mf">5f</span>             <span class="n">pop</span> <span class="n">di</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6035</span>      <span class="mi">26668</span><span class="n">d850010</span>   <span class="n">lea</span> <span class="n">eax</span><span class="p">,</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span> <span class="o">+</span> <span class="mh">0x1000</span><span class="p">]</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">603</span><span class="n">b</span>      <span class="mi">6683</span><span class="n">c803</span>       <span class="n">or</span> <span class="n">eax</span><span class="p">,</span> <span class="mi">3</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mf">603f</span>      <span class="mi">26668905</span>       <span class="n">mov</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span><span class="p">],</span> <span class="n">eax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6043</span>      <span class="mi">26668</span><span class="n">d850020</span>   <span class="n">lea</span> <span class="n">eax</span><span class="p">,</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span> <span class="o">+</span> <span class="mh">0x2000</span><span class="p">]</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6049</span>      <span class="mi">6683</span><span class="n">c803</span>       <span class="n">or</span> <span class="n">eax</span><span class="p">,</span> <span class="mi">3</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">604</span><span class="n">d</span>      <span class="mi">266689850010</span>   <span class="n">mov</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span> <span class="o">+</span> <span class="mh">0x1000</span><span class="p">],</span> <span class="n">eax</span> <span class="p">;</span> <span class="p">[</span><span class="mh">0x1000</span><span class="o">:</span><span class="mi">4</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6053</span>      <span class="mi">26668</span><span class="n">d850030</span>   <span class="n">lea</span> <span class="n">eax</span><span class="p">,</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span> <span class="o">+</span> <span class="mh">0x3000</span><span class="p">]</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6059</span>      <span class="mi">6683</span><span class="n">c803</span>       <span class="n">or</span> <span class="n">eax</span><span class="p">,</span> <span class="mi">3</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">605</span><span class="n">d</span>      <span class="mi">266689850020</span>   <span class="n">mov</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span> <span class="o">+</span> <span class="mh">0x2000</span><span class="p">],</span> <span class="n">eax</span> <span class="p">;</span> <span class="p">[</span><span class="mh">0x2000</span><span class="o">:</span><span class="mi">4</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6063</span>      <span class="mi">57</span>             <span class="n">push</span> <span class="n">di</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6064</span>      <span class="mi">8</span><span class="n">dbd0030</span>       <span class="n">lea</span> <span class="n">di</span><span class="p">,</span> <span class="n">word</span> <span class="p">[</span><span class="n">di</span> <span class="o">+</span> <span class="mh">0x3000</span><span class="p">]</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6068</span>      <span class="mi">66</span><span class="n">b803000000</span>   <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span> <span class="mi">3</span>
+        <span class="err">┌─</span><span class="o">&gt;</span> <span class="mo">0000</span><span class="o">:</span><span class="mi">606</span><span class="n">e</span>      <span class="mi">26668905</span>       <span class="n">mov</span> <span class="n">dword</span> <span class="nl">es</span><span class="p">:[</span><span class="n">di</span><span class="p">],</span> <span class="n">eax</span>
+        <span class="err">╎</span>   <span class="mo">0000</span><span class="o">:</span><span class="mi">6072</span>      <span class="mi">660500100000</span>   <span class="n">add</span> <span class="n">eax</span><span class="p">,</span> <span class="mh">0x1000</span>
+        <span class="err">╎</span>   <span class="mo">0000</span><span class="o">:</span><span class="mi">6078</span>      <span class="mi">83</span><span class="n">c708</span>         <span class="n">add</span> <span class="n">di</span><span class="p">,</span> <span class="mi">8</span>
+        <span class="err">╎</span>   <span class="mo">0000</span><span class="o">:</span><span class="mi">607</span><span class="n">b</span>      <span class="mi">663</span><span class="n">d00002000</span>   <span class="n">cmp</span> <span class="n">eax</span><span class="p">,</span> <span class="mh">0x200000</span>
+        <span class="err">└─</span><span class="o">&lt;</span> <span class="mo">0000</span><span class="o">:</span><span class="mi">6081</span>      <span class="mi">72</span><span class="n">eb</span>           <span class="n">jb</span> <span class="mh">0x606e</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6083</span>      <span class="mf">5f</span>             <span class="n">pop</span> <span class="n">di</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6084</span>      <span class="n">b0ff</span>           <span class="n">mov</span> <span class="n">al</span><span class="p">,</span> <span class="mh">0xff</span>                 <span class="p">;</span> <span class="mi">255</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6086</span>      <span class="n">e6a1</span>           <span class="n">out</span> <span class="mh">0xa1</span><span class="p">,</span> <span class="n">al</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6088</span>      <span class="n">e621</span>           <span class="n">out</span> <span class="mh">0x21</span><span class="p">,</span> <span class="n">al</span>                 <span class="p">;</span> <span class="sc">&#39;!&#39;</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">608</span><span class="n">a</span>      <span class="mi">90</span>             <span class="n">nop</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">608</span><span class="n">b</span>      <span class="mi">90</span>             <span class="n">nop</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">608</span><span class="n">c</span>      <span class="mf">0f011e2060</span>     <span class="n">lidt</span> <span class="p">[</span><span class="mh">0x6020</span><span class="p">]</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6091</span>      <span class="mi">66</span><span class="n">b8a0000000</span>   <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span> <span class="mh">0xa0</span>                <span class="p">;</span> <span class="mi">160</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">6097</span>      <span class="mf">0f22e0</span>         <span class="n">mov</span> <span class="n">cr4</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">609</span><span class="n">a</span>      <span class="mf">6689f</span><span class="n">a</span>         <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span> <span class="n">edi</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">609</span><span class="n">d</span>      <span class="mf">0f</span><span class="mi">22</span><span class="n">da</span>         <span class="n">mov</span> <span class="n">cr3</span><span class="p">,</span> <span class="n">edx</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">a0</span>      <span class="mi">66</span><span class="n">b9800000c0</span>   <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span> <span class="mh">0xc0000080</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">a6</span>      <span class="mf">0f</span><span class="mi">32</span>           <span class="n">rdmsr</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">a8</span>      <span class="mi">660</span><span class="n">d00010000</span>   <span class="n">or</span> <span class="n">eax</span><span class="p">,</span> <span class="mh">0x100</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">ae</span>      <span class="mf">0f</span><span class="mi">30</span>           <span class="n">wrmsr</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">b0</span>      <span class="mf">0f</span><span class="mi">20</span><span class="n">c3</span>         <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span> <span class="n">cr0</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">b3</span>      <span class="mi">6681</span><span class="n">cb010000</span><span class="p">.</span>  <span class="n">or</span> <span class="n">ebx</span><span class="p">,</span> <span class="mh">0x80000001</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">ba</span>      <span class="mf">0f</span><span class="mi">22</span><span class="n">c3</span>         <span class="n">mov</span> <span class="n">cr0</span><span class="p">,</span> <span class="n">ebx</span>
+            <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">bd</span>      <span class="mf">0f0116e260</span>     <span class="n">lgdt</span> <span class="p">[</span><span class="mh">0x60e2</span><span class="p">]</span>
+        <span class="err">┌─</span><span class="o">&lt;</span> <span class="mo">0000</span><span class="o">:</span><span class="mi">60</span><span class="n">c2</span>      <span class="n">ea58610800</span>     <span class="n">ljmp</span> <span class="mi">8</span><span class="o">:</span><span class="mh">0x6158</span>
+</pre></div>
+
+<p>将hlt改为nop跳过。到0x6158</p>
+<div class="codehilite"><pre><span></span><span class="p">[</span><span class="mo">0000</span><span class="o">:</span><span class="mi">6000</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">s</span> <span class="mh">0x6158</span>
+<span class="p">[</span><span class="mo">0000</span><span class="o">:</span><span class="mi">6158</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">e</span> <span class="k">asm</span><span class="p">.</span><span class="n">bits</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="p">[</span><span class="mh">0x00006158</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">pd</span> <span class="mi">37</span>
+            <span class="mh">0x00006158</span>      <span class="mi">66</span><span class="n">b81000</span>       <span class="n">mov</span> <span class="n">ax</span><span class="p">,</span> <span class="mh">0x10</span>                <span class="p">;</span> <span class="mi">16</span>
+            <span class="mh">0x0000615c</span>      <span class="mi">8</span><span class="n">ed8</span>           <span class="n">mov</span> <span class="n">ds</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mh">0x0000615e</span>      <span class="mi">8</span><span class="n">ec0</span>           <span class="n">mov</span> <span class="n">es</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mh">0x00006160</span>      <span class="mi">8</span><span class="n">ee0</span>           <span class="n">mov</span> <span class="n">fs</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mh">0x00006162</span>      <span class="mi">8</span><span class="n">ee8</span>           <span class="n">mov</span> <span class="n">gs</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mh">0x00006164</span>      <span class="mi">8</span><span class="n">ed0</span>           <span class="n">mov</span> <span class="n">ss</span><span class="p">,</span> <span class="n">eax</span>
+            <span class="mh">0x00006166</span>      <span class="n">bf00800b00</span>     <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span> <span class="mh">0xb8000</span>
+            <span class="mh">0x0000616b</span>      <span class="n">b9f4010000</span>     <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span> <span class="mh">0x1f4</span>              <span class="p">;</span> <span class="mi">500</span>
+            <span class="mh">0x00006170</span>      <span class="mi">48</span><span class="n">b8201f201f</span><span class="p">.</span>  <span class="n">movabs</span> <span class="n">rax</span><span class="p">,</span> <span class="mh">0x1f201f201f201f20</span>
+            <span class="mh">0x0000617a</span>      <span class="n">f348ab</span>         <span class="n">rep</span> <span class="n">stosq</span> <span class="n">qword</span> <span class="p">[</span><span class="n">rdi</span><span class="p">],</span> <span class="n">rax</span>
+            <span class="mh">0x0000617d</span>      <span class="n">bf00800b00</span>     <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span> <span class="mh">0xb8000</span>
+            <span class="mh">0x00006182</span>      <span class="mi">4831</span><span class="n">c0</span>         <span class="n">xor</span> <span class="n">rax</span><span class="p">,</span> <span class="n">rax</span>
+            <span class="mh">0x00006185</span>      <span class="mi">4831</span><span class="n">db</span>         <span class="n">xor</span> <span class="n">rbx</span><span class="p">,</span> <span class="n">rbx</span>
+            <span class="mh">0x00006188</span>      <span class="mi">4831</span><span class="n">c9</span>         <span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span> <span class="n">rcx</span>
+            <span class="mh">0x0000618b</span>      <span class="mi">4831</span><span class="n">d2</span>         <span class="n">xor</span> <span class="n">rdx</span><span class="p">,</span> <span class="n">rdx</span>
+            <span class="mh">0x0000618e</span>      <span class="n">b245</span>           <span class="n">mov</span> <span class="n">dl</span><span class="p">,</span> <span class="mh">0x45</span>                <span class="p">;</span> <span class="sc">&#39;E&#39;</span> <span class="p">;</span> <span class="mi">69</span>
+            <span class="mh">0x00006190</span>      <span class="mi">80</span><span class="n">ca6c</span>         <span class="n">or</span> <span class="n">dl</span><span class="p">,</span> <span class="mh">0x6c</span>                 <span class="p">;</span> <span class="sc">&#39;l&#39;</span>
+            <span class="mh">0x00006193</span>      <span class="n">b679</span>           <span class="n">mov</span> <span class="n">dh</span><span class="p">,</span> <span class="mh">0x79</span>                <span class="p">;</span> <span class="sc">&#39;y&#39;</span> <span class="p">;</span> <span class="mi">121</span>
+            <span class="mh">0x00006195</span>      <span class="mi">80</span><span class="n">ce6b</span>         <span class="n">or</span> <span class="n">dh</span><span class="p">,</span> <span class="mh">0x6b</span>                 <span class="p">;</span> <span class="sc">&#39;k&#39;</span>
+            <span class="mh">0x00006198</span>      <span class="mf">20f</span><span class="mi">2</span>           <span class="n">and</span> <span class="n">dl</span><span class="p">,</span> <span class="n">dh</span>
+            <span class="mh">0x0000619a</span>      <span class="n">b600</span>           <span class="n">mov</span> <span class="n">dh</span><span class="p">,</span> <span class="mi">0</span>
+            <span class="mh">0x0000619c</span>      <span class="mi">48</span><span class="n">bee8600000</span><span class="p">.</span>  <span class="n">movabs</span> <span class="n">rsi</span><span class="p">,</span> <span class="mh">0x60e8</span>
+        <span class="err">┌─</span><span class="o">&gt;</span> <span class="mh">0x000061a6</span>      <span class="mi">48833</span><span class="n">c0600</span>     <span class="n">cmp</span> <span class="n">qword</span> <span class="p">[</span><span class="n">rsi</span> <span class="o">+</span> <span class="n">rax</span><span class="p">],</span> <span class="mi">0</span>
+       <span class="err">┌──</span><span class="o">&lt;</span> <span class="mh">0x000061ab</span>      <span class="mi">7427</span>           <span class="n">je</span> <span class="mh">0x61d4</span>
+       <span class="err">│╎</span>   <span class="mh">0x000061ad</span>      <span class="n">b904000000</span>     <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span> <span class="mi">4</span>
+      <span class="err">┌───</span><span class="o">&gt;</span> <span class="mh">0x000061b2</span>      <span class="mi">8</span><span class="n">a1c06</span>         <span class="n">mov</span> <span class="n">bl</span><span class="p">,</span> <span class="n">byte</span> <span class="p">[</span><span class="n">rsi</span> <span class="o">+</span> <span class="n">rax</span><span class="p">]</span>
+      <span class="err">╎│╎</span>   <span class="mh">0x000061b5</span>      <span class="mi">30</span><span class="n">d3</span>           <span class="n">xor</span> <span class="n">bl</span><span class="p">,</span> <span class="n">dl</span>
+      <span class="err">╎│╎</span>   <span class="mh">0x000061b7</span>      <span class="n">d0eb</span>           <span class="n">shr</span> <span class="n">bl</span><span class="p">,</span> <span class="mi">1</span>
+      <span class="err">╎│╎</span>   <span class="mh">0x000061b9</span>      <span class="mi">881</span><span class="n">c06</span>         <span class="n">mov</span> <span class="n">byte</span> <span class="p">[</span><span class="n">rsi</span> <span class="o">+</span> <span class="n">rax</span><span class="p">],</span> <span class="n">bl</span>
+      <span class="err">╎│╎</span>   <span class="mh">0x000061bc</span>      <span class="mi">4883</span><span class="n">c002</span>       <span class="n">add</span> <span class="n">rax</span><span class="p">,</span> <span class="mi">2</span>
+      <span class="err">└───</span><span class="o">&lt;</span> <span class="mh">0x000061c0</span>      <span class="n">e2f0</span>           <span class="n">loop</span> <span class="mh">0x61b2</span>
+       <span class="err">│╎</span>   <span class="mh">0x000061c2</span>      <span class="mf">4883e808</span>       <span class="n">sub</span> <span class="n">rax</span><span class="p">,</span> <span class="mi">8</span>
+       <span class="err">│╎</span>   <span class="mh">0x000061c6</span>      <span class="mi">488</span><span class="n">b0c06</span>       <span class="n">mov</span> <span class="n">rcx</span><span class="p">,</span> <span class="n">qword</span> <span class="p">[</span><span class="n">rsi</span> <span class="o">+</span> <span class="n">rax</span><span class="p">]</span>
+       <span class="err">│╎</span>   <span class="mh">0x000061ca</span>      <span class="mi">48890</span><span class="n">c07</span>       <span class="n">mov</span> <span class="n">qword</span> <span class="p">[</span><span class="n">rdi</span> <span class="o">+</span> <span class="n">rax</span><span class="p">],</span> <span class="n">rcx</span>
+       <span class="err">│╎</span>   <span class="mh">0x000061ce</span>      <span class="mi">4883</span><span class="n">c008</span>       <span class="n">add</span> <span class="n">rax</span><span class="p">,</span> <span class="mi">8</span>
+       <span class="err">│└─</span><span class="o">&lt;</span> <span class="mh">0x000061d2</span>      <span class="n">ebd2</span>           <span class="n">jmp</span> <span class="mh">0x61a6</span>
+       <span class="err">└──</span><span class="o">&gt;</span> <span class="mh">0x000061d4</span>      <span class="n">ebd2</span>           <span class="n">invalid</span>
+</pre></div>
+
+<p>在栈上解密buf并且打印，解密算法如下
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">binascii</span>
+
+<span class="n">enc</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&quot;a5b1aba79f09b5a3d78fb3010b0bd7fdf3c9d7a5b78dd7991905d7b7b50fd7b3018f8f0b85a3d70ba3ab89d701d7db09c393&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">((</span><span class="n">b</span> <span class="o">^</span> <span class="mh">0x69</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">enc</span><span class="p">))</span>
+</pre></div></p>
+                
+                  
+                
+              
+              
+                <!-- Set from config but allow override -->
+   
+
+<hr>
+
+<!-- Comments Integration -->
+ 
+<h2 id="__comments">评论</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '708ce3b6562eb67f799f',
+        clientSecret: 'fa962a493d91e7d25852c1562cf3972825e0767e',
+        repo: 'blog_comment',
+        owner: 'DF-11A',
+        admin: ['4uuu', 'DF-11A'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script> 
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../A-Walk-Through-x86-Part-1/writeup/" title="A-Walk-Through-x86-Part-1" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                A-Walk-Through-x86-Part-1
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../A-Walk-Through-x86-Part-3/writeup/" title="A-Walk-Through-x86-Part-3" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                A-Walk-Through-x86-Part-3
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2018 DF Team
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.a26c1c19.js"></script>
+      
+        
+        
+          
+          <script src="../../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../_static/js/extra.js"></script>
+      
+        <script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
