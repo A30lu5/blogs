@@ -1125,9 +1125,51 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        nvs
+      </label>
+    
     <a href="./" title="nvs" class="md-nav__link md-nav__link--active">
       nvs
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1" title="Stage 1:" class="md-nav__link">
+    Stage 1:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2" title="STAGE 2:" class="md-nav__link">
+    STAGE 2:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1188,6 +1230,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1" title="Stage 1:" class="md-nav__link">
+    Stage 1:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2" title="STAGE 2:" class="md-nav__link">
+    STAGE 2:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1202,30 +1273,20 @@
                 
                 
                 <h1 id="no-vulnerable-services">No Vulnerable Services<a class="headerlink" href="#no-vulnerable-services" title="Permanent link">&para;</a></h1>
-<p>Category: Web
-Points: 400
-Meta: web hosting company (no.vulnerable.services)
-Flag: <code>flag{7672f158167cab32aebc161abe0fbfcaee2868c1}</code> (change in <code>src/nvs_support/src/flag.txt</code>)</p>
-<p>Solution overview:
-    * Stage 1:
-        * observe:
-            * dynamic subdomain generation in records from served-by header, footer p, etc. (X-Served-By: d8a50228.ip.no.vulnerable.services resolves to 216.165.2.40)
-            * CSP to only allow JS from http://*.no.vulnerable.services (and recaptcha stuff)</p>
-<div class="codehilite"><pre><span></span>    * contact us for pricing page -&amp;gt; XSS
-    * leak admin cookies by script src&#39;ing something hosted on a VM (accessible at {ip_hex_encoded}.rev.no.vulnerable.services)
-
-* STAGE 2:
-    * observe:
-        * loadbalancer running at 216.165.2.41
-    * find that loadbalancer won&#39;t proxy support page (403) but will proxy arb IPs
-    * find that the LB gratuitously follows redirects but doesn&#39;t whitelist check against the redirect IP
-    * setup http server that responds with a 302 to support.no.vulnerable.services
-    * exploit support page&#39;s ping tool
-</pre></div>
-
-
-<p>Resources:
-* nip.io source: <a href="https://xp-dev.com/sc/150354/HEAD/%2Fsrc%2Fbackend.py">https://xp-dev.com/sc/150354/HEAD/%2Fsrc%2Fbackend.py</a></p>
+<p>Solution</p>
+<h2 id="stage-1">Stage 1:<a class="headerlink" href="#stage-1" title="Permanent link">&para;</a></h2>
+<p>dynamic subdomain generation in records from served-by header, footer p, etc. (X-Served-By: d8a50228.ip.no.vulnerable.services resolves to 216.165.2.40)</p>
+<p>CSP to only allow JS from http://*.no.vulnerable.services (and recaptcha stuff)</p>
+<p>contact us for pricing page -&gt; XSS</p>
+<p>leak admin cookies by script src'ing something hosted on a VM (accessible at {ip_hex_encoded}.rev.no.vulnerable.services)</p>
+<h2 id="stage-2">STAGE 2:<a class="headerlink" href="#stage-2" title="Permanent link">&para;</a></h2>
+<p>loadbalancer running at 216.165.2.41</p>
+<p>find that loadbalancer won't proxy support page (403) but will proxy arb IPs</p>
+<p>find that the LB gratuitously follows redirects but doesn't whitelist check against the redirect IP</p>
+<p>setup http server that responds with a 302 to support.no.vulnerable.services</p>
+<p>exploit support page's ping tool (command execute)
+<div class="codehilite"><pre><span></span>127.0.0.`ls`
+</pre></div></p>
                 
                   
                 
