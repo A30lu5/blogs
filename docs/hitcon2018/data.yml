@@ -1,0 +1,31 @@
+hitcon-2018:
+  _meta_:
+    max_score: 1000
+    name: "hitcon-2018"
+  web:
+    - oh-my-raddit1:
+        score: 1000
+        flag: flag{megnnaro}
+        pushflag: NULL
+        env: ./web/oh-my-raddit/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./web/oh-my-raddit/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: NULL
+        hint: NULL
+        origin: NULL
+    - oh-my-raddit2:
+        score: 1000
+        flag: random
+        pushflag: ./web/oh-my-raddit/pushflag.sh
+        env: ./web/oh-my-raddit/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./web/oh-my-raddit/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: NULL
+        hint: NULL
+        origin: NULL

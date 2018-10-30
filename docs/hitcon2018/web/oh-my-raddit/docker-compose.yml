@@ -1,0 +1,9 @@
+services:
+  backup:
+    build: .
+    image: 10.10.83.201:5001/hitcon2018__oh_my_raddit:1.0
+    labels:
+      '8080': http://IP:PORT
+    ports:
+    - 8000:8080
+version: '3'
