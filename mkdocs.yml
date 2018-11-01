@@ -75,9 +75,15 @@ nav:
         - nvs: CSAW-CTF-2018-Quals/web/nvs/README.md
         - sso: CSAW-CTF-2018-Quals/web/sso/writeup.md
         - wtf_sql: CSAW-CTF-2018-Quals/web/wtf_sql/writeup.md
+    - Hacklu2018:
+      - Web:
+        - IdeaShare: hacklu2018/web/IdeaShare/writeup.md
+
     - Hitcon-2018:
       - Web:
         - oh-my-raddit | DES&Web.py_RCE: hitcon2018/web/oh-my-raddit/writeup.md
+
+
  
 # Theme
 theme:
