@@ -1,0 +1,806 @@
+ 8408     _dl_find_dso_for_object [/lib64/ld-linux-x86-64.so.2]  
+ 8408     __libc_start_main(main = 0x400b30, argc = 1, ubp_av = 0x7fffffffe508, auxvec = 0x401000, init = 0x401070, fini = 0x7ffff7de7ab0, rtld_fini = 0x7fffffffe4f8) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       setvbuf(stream = 0x7ffff737e8e0, buf = NULL, modes = 2, n = 0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } setvbuf = 0
+ 8408       setvbuf(stream = 0x7ffff737f620, buf = NULL, modes = 2, n = 0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } setvbuf = 0
+ 8408       setvbuf(stream = 0x7ffff737f540, buf = NULL, modes = 2, n = 0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } setvbuf = 0
+ 8408       dlopen(file = "./libflag.so", mode = 1) [/lib/x86_64-linux-gnu/libdl.so.2] {
+ooooo   ooooo   .oooooo.   ooooooooooooo oooooooooooo
+`888'   `888'  d8P'  `Y8b  8'   888   `8 `888'     `8 8408       } dlopen = 0x6030c0
+
+ 888     888  888               888       888        
+ 888ooooo888  888               888       888oooo8   
+ 888     888  888               888       888    "  
+ 888     888  `88b    ooo       888       888        
+o888o   o888o  `Y8bood8P'      o888o     o888o       
+
+============= Happy Christmas !!! =============
+
+ 8408       puts(s = "ooooo   ooooo   .oooooo.   ooooooooooooo oooooooooooo") [/lib/x86_64-linux-gnu/libc.so.6] {
+Santa Claus hides the SECRCT FLAG in libflag.so , can you tell me how to find it??
+ 8408       } puts = 54
+ 8408       puts(s = "`888'   `888'  d8P'  `Y8b  8'   888   `8 `888'     `8") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 54
+ 8408       puts(s = " 888     888  888               888       888        ") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 54
+ 8408       puts(s = " 888ooooo888  888               888       888oooo8   ") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 54
+ 8408       puts(s = " 888     888  888               888       888    "  ") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 53
+ 8408       puts(s = " 888     888  `88b    ooo       888       888        ") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 54
+ 8408       puts(s = "o888o   o888o  `Y8bood8P'      o888o     o888o       ") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 54
+ 8408       puts(s = "") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 1
+ 8408       puts(s = "============= Happy Christmas !!! =============") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 48
+ 8408       puts(s = "") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 1
+ 8408       open(file = "/dev/urandom", oflag = 0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } open = 7
+ 8408       read(fd = 7, buf = 0x7fffffffcc40, nbytes = 8) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } read = 8
+ 8408       read(fd = 7, buf = 0x7fffffffcc48, nbytes = 8) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } read = 8
+ 8408       mmap(addr = 0xaf75b7b5000, len = 4096, prot = 7, flags = 34, fd = -1, offset = 0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } mmap = 0xaf75b7b5000
+ 8408       mmap(addr = 0xc761dde5000, len = 4096, prot = 3, flags = 34, fd = -1, offset = 0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } mmap = 0xc761dde5000
+ 8408       puts(s = "Santa Claus hides the SECRCT FLAG in libflag.so , can you tell me how to find it??") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } puts = 83
+ 8408       read(fd = 0, buf = 0x7fffffffcc50, nbytes = 4048) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } read = 4
+ 8408       strlen(s = "aaa") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } strlen = 3
+ 8408       __ctype_b_loc [/lib/x86_64-linux-gnu/libc.so.6]  
+ 8408       } __ctype_b_loc = 0x7ffff7ff55b8
+ 8408       strncpy(dest = 0xaf75b7b5030, src = "aaa", n = 4048) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408       } strncpy = "aaa"
+ 8408       seccomp_init [/lib/x86_64-linux-gnu/libseccomp.so.2]  
+ 8408         calloc(nmemb = 48, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x6036b0
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x6036f0
+ 8408         realloc(ptr = NULL, size = 8) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603710
+ 8408       seccomp_rule_add [/lib/x86_64-linux-gnu/libseccomp.so.2]  
+ 8408         calloc(nmemb = 192, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603730
+ 8408         malloc(size = 40) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } malloc = 0x603800
+ 8408         malloc(size = 192) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } malloc = 0x603830
+ 8408         memcpy(dest = 0x603830, src = 0x603730, n = 192) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } memcpy = 0x603830
+ 8408         calloc(nmemb = 56, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603900
+ 8408         free(ptr = 0x603730) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408       seccomp_rule_add [/lib/x86_64-linux-gnu/libseccomp.so.2]  
+ 8408         calloc(nmemb = 192, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603730
+ 8408         malloc(size = 40) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } malloc = 0x603940
+ 8408         malloc(size = 192) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } malloc = 0x603970
+ 8408         memcpy(dest = 0x603970, src = 0x603730, n = 192) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } memcpy = 0x603970
+ 8408         calloc(nmemb = 56, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603a40
+ 8408         free(ptr = 0x603730) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408       seccomp_load [/lib/x86_64-linux-gnu/libseccomp.so.2]  
+ 8408         calloc(nmemb = 16, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603730
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603750
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603a80
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x6037c0
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603b00
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603b70
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x6037e0
+ 8408         memcmp(s1 = 0x603a80, s2 = 0x603b70, n = 56) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } memcmp = 0
+ 8408         free(ptr = 0x6037e0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603b70) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603bf0
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603b70
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x6037e0
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603c60
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603cd0
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603d40
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603dc0
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603de0
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603e60
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603e80
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603ef0
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603f60
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603fe0
+ 8408         memcmp(s1 = 0x603d40, s2 = 0x603f60, n = 56) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } memcmp = 0
+ 8408         free(ptr = 0x603fe0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603f60) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x603f60
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x603fe0
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x604000
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604070
+ 8408         realloc(ptr = 0x604070, size = 224) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604070
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x604160
+ 8408         calloc(nmemb = 96, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x604180
+ 8408         realloc(ptr = NULL, size = 112) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x6041f0
+ 8408         calloc(nmemb = 24, size = 1) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } calloc = 0x604270
+ 8408         realloc(ptr = NULL, size = 8) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x6037e0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603b70) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603bf0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = 0x604290, size = 16) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x604270) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x6041f0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x604180) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = 0x604290, size = 32) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x604160) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x604070) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x604000) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = 0x604290, size = 40) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x603fe0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603f60) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603e80) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = 0x604290, size = 48) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x603e60) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603de0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603c60) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = 0x604290, size = 56) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x603dc0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603ef0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603d40) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603cd0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         realloc(ptr = 0x604290, size = 64) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } realloc = 0x604290
+ 8408         free(ptr = 0x6037c0) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603b00) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603a80) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         free(ptr = 0x603750) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } free = void
+ 8408         prctl [/lib/x86_64-linux-gnu/libc.so.6]  
+ 8408         strcmp(s1 = "seccomp", s2 = "_llseek") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 20
+ 8408         strcmp(s1 = "seccomp", s2 = "_newselect") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 20
+ 8408         strcmp(s1 = "seccomp", s2 = "_sysctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 20
+ 8408         strcmp(s1 = "seccomp", s2 = "accept") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "accept4") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "access") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "acct") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "add_key") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "adjtimex") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "afs_syscall") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "alarm") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "arm_fadvise64_64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "arm_sync_file_range") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "arch_prctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 18
+ 8408         strcmp(s1 = "seccomp", s2 = "bdflush") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 17
+ 8408         strcmp(s1 = "seccomp", s2 = "bind") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 17
+ 8408         strcmp(s1 = "seccomp", s2 = "bpf") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 17
+ 8408         strcmp(s1 = "seccomp", s2 = "break") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 17
+ 8408         strcmp(s1 = "seccomp", s2 = "breakpoint") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 17
+ 8408         strcmp(s1 = "seccomp", s2 = "brk") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 17
+ 8408         strcmp(s1 = "seccomp", s2 = "cachectl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "cacheflush") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "capget") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "capset") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "chdir") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "chmod") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "chown") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "chown32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "chroot") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "clock_adjtime") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "clock_getres") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "clock_gettime") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "clock_nanosleep") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "clock_settime") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "clone") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "close") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "connect") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "copy_file_range") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "creat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "create_module") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 16
+ 8408         strcmp(s1 = "seccomp", s2 = "delete_module") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 15
+ 8408         strcmp(s1 = "seccomp", s2 = "dup") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 15
+ 8408         strcmp(s1 = "seccomp", s2 = "dup2") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 15
+ 8408         strcmp(s1 = "seccomp", s2 = "dup3") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 15
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_create") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_create1") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_ctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_ctl_old") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_pwait") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_wait") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "epoll_wait_old") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "eventfd") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "eventfd2") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "execve") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "execveat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "exit") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "exit_group") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 14
+ 8408         strcmp(s1 = "seccomp", s2 = "faccessat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fadvise64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fadvise64_64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fallocate") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fanotify_init") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fanotify_mark") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fchdir") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fchmod") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fchmodat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fchown") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fchown32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fchownat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fcntl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fcntl64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fdatasync") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fgetxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "finit_module") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "flistxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "flock") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fork") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fremovexattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fsetxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fstat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fstat64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fstatat64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fstatfs") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fstatfs64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "fsync") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "ftime") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "ftruncate") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "ftruncate64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "futex") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "futimesat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 13
+ 8408         strcmp(s1 = "seccomp", s2 = "get_kernel_syms") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "get_mempolicy") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "get_robust_list") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "get_thread_area") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getcpu") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getcwd") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getdents") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getdents64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getegid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getegid32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "geteuid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "geteuid32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getgid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getgid32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getgroups") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getgroups32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getitimer") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getpeername") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getpgid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getpgrp") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getpid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getpmsg") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getppid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getpriority") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getrandom") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getresgid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getresgid32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getresuid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getresuid32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getrlimit") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getrusage") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getsid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getsockname") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getsockopt") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "gettid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "gettimeofday") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getuid") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getuid32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "getxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "gtty") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 12
+ 8408         strcmp(s1 = "seccomp", s2 = "idle") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "init_module") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "inotify_add_watch") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "inotify_init") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "inotify_init1") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "inotify_rm_watch") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "io_cancel") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "io_destroy") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "io_getevents") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "io_setup") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "io_submit") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "ioctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "ioperm") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "iopl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "ioprio_get") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "ioprio_set") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "ipc") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 10
+ 8408         strcmp(s1 = "seccomp", s2 = "kcmp") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 8
+ 8408         strcmp(s1 = "seccomp", s2 = "kexec_file_load") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 8
+ 8408         strcmp(s1 = "seccomp", s2 = "kexec_load") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 8
+ 8408         strcmp(s1 = "seccomp", s2 = "keyctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 8
+ 8408         strcmp(s1 = "seccomp", s2 = "kill") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 8
+ 8408         strcmp(s1 = "seccomp", s2 = "lchown") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lchown32") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lgetxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "link") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "linkat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "listen") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "listxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "llistxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lock") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lookup_dcookie") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lremovexattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lseek") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lsetxattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lstat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "lstat64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 7
+ 8408         strcmp(s1 = "seccomp", s2 = "madvise") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mbind") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "membarrier") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "memfd_create") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "migrate_pages") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mincore") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mkdir") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mkdirat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mknod") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mknodat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mlock") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mlock2") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mlockall") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mmap") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mmap2") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "modify_ldt") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mount") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "move_pages") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mprotect") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mpx") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mq_getsetattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mq_notify") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mq_open") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mq_timedreceive") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mq_timedsend") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mq_unlink") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "mremap") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "msgctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "msgget") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "msgrcv") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "msgsnd") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "msync") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "multiplexer") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "munlock") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "munlockall") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "munmap") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 6
+ 8408         strcmp(s1 = "seccomp", s2 = "name_to_handle_at") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 5
+ 8408         strcmp(s1 = "seccomp", s2 = "nanosleep") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 5
+ 8408         strcmp(s1 = "seccomp", s2 = "newfstatat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 5
+ 8408         strcmp(s1 = "seccomp", s2 = "nfsservctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 5
+ 8408         strcmp(s1 = "seccomp", s2 = "nice") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 5
+ 8408         strcmp(s1 = "seccomp", s2 = "oldfstat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "oldlstat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "oldolduname") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "oldstat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "olduname") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "oldwait4") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "open") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "open_by_handle_at") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "openat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 4
+ 8408         strcmp(s1 = "seccomp", s2 = "pause") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pciconfig_iobase") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pciconfig_read") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pciconfig_write") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "perf_event_open") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "personality") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pipe") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pipe2") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pivot_root") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "poll") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "ppoll") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "prctl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pread64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "preadv") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "prlimit64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "process_vm_readv") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "process_vm_writev") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "prof") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "profil") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pselect6") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "ptrace") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "putpmsg") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pwrite64") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "pwritev") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 3
+ 8408         strcmp(s1 = "seccomp", s2 = "query_module") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "quotactl") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "read") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "readahead") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "readdir") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "readlink") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "readlinkat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "readv") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "reboot") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "recv") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "recvfrom") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "recvmmsg") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "recvmsg") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "remap_file_pages") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "removexattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rename") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "renameat") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "renameat2") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "request_key") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "restart_syscall") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rmdir") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigaction") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigpending") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigprocmask") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigqueueinfo") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigreturn") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigsuspend") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_sigtimedwait") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rt_tgsigqueueinfo") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "rtas") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 1
+ 8408         strcmp(s1 = "seccomp", s2 = "s390_pci_mmio_read") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 50
+ 8408         strcmp(s1 = "seccomp", s2 = "s390_pci_mmio_write") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 50
+ 8408         strcmp(s1 = "seccomp", s2 = "s390_runtime_instr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 50
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_get_priority_max") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_get_priority_min") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_getaffinity") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_getattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_getparam") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_getscheduler") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_rr_get_interval") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_setaffinity") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_setattr") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_setparam") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_setscheduler") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "sched_yield") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 2
+ 8408         strcmp(s1 = "seccomp", s2 = "seccomp") [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } strcmp = 0
+ 8408         syscall(sysno = 317) [/lib/x86_64-linux-gnu/libc.so.6] {
+ 8408         } syscall = -1
+ 8408         __errno_location [/lib/x86_64-linux-gnu/libc.so.6]  
+ 8408         syscall(sysno = 317) [/lib/x86_64-linux-gnu/libc.so.6] {
+
+./christmas finished - killed by signal 31

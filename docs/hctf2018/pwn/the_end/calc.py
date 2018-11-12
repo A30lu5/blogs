@@ -1,0 +1,16 @@
+a = [0x00007ffff7b5a9b0,
+0x00007ffff7ffac80,
+0x00007ffff7a2c7f6,
+0x00007ffff7a2c806,
+0x00007ffff7b57860,
+0x00007ffff7a2c826,
+0x00007ffff7b57730,
+0x00007ffff7b58ff0,
+0x00007ffff7debbf0,
+0x00007ffff7b575f0,
+0x00007ffff7a2c876,
+0x00007ffff7ffade0,
+0x00007ffff7b57980]
+
+for i in a:
+    print hex(i - 0x00007ffff7a0d000)

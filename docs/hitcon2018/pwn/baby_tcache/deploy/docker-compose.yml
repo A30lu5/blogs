@@ -1,0 +1,11 @@
+services:
+  baby_tcache:
+    build: .
+    command: /start.sh
+    image: 10.10.83.201:5001/challenges:baby_tcache
+    labels:
+      '9999': nc IP PORT
+    ports:
+    - 9999:9999
+    restart: unless-stopped
+version: '3'
