@@ -1,0 +1,11 @@
+services:
+  heap_heaven_2:
+    build: .
+    command: /start.sh
+    image: 10.10.83.201:5001/challenges:heap_heaven_2
+    labels:
+      '9999': nc IP PORT
+    ports:
+    - 9999:9999
+    restart: unless-stopped
+version: '3'

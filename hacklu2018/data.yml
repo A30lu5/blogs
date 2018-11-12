@@ -1,0 +1,31 @@
+hacklu-2018:
+  _meta_:
+    max_score: 1000
+    name: "hacklu-2018"
+  pwn:
+    - heap_heaven:
+        score: 1000
+        flag: random
+        pushflag: ./pwn/heap_heaven/public/docker_env/pushflag.sh
+        env: ./pwn/heap_heaven/public/docker_env/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./pwn/heap_heaven/public/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: unlink
+        hint: NULL
+        origin: NULL
+    - slotmachine:
+        score: 1000
+        flag: random
+        pushflag: ./pwn/slot_machine/public/deploy/pushflag.sh
+        env: ./pwn/slot_machine/public/deploy/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./pwn/slot_machine/public/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: tcache_dup
+        hint: NULL
+        origin: NULL

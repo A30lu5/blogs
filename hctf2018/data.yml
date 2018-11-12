@@ -1,0 +1,31 @@
+hctf-2018:
+  _meta_:
+    max_score: 1000
+    name: "hctf-2018"
+  pwn:
+    - the_end:
+        score: 1000
+        flag: random
+        pushflag: ./pwn/the_end/deploy/pushflag.sh
+        env: ./pwn/the_end/deploy/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./pwn/the_end/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: fsop
+        hint: NULL
+        origin: NULL
+    - babyprintf_ver2:
+        score: 1000
+        flag: random
+        pushflag: ./pwn/babyprintf/deploy/pushflag.sh
+        env: ./pwn/babyprintf/deploy/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./pwn/babyprintf/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: fake_io
+        hint: NULL
+        origin: NULL

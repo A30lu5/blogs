@@ -29,3 +29,30 @@ hitcon-2018:
         tag: NULL
         hint: NULL
         origin: NULL
+  pwn:
+    - baby_tcache:
+        score: 1000
+        flag: random
+        pushflag: ./pwn/baby_tcache/deploy/pushflag.sh
+        env: ./pwn/baby_tcache/deploy/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./pwn/baby_tcache/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: off-by-one
+        hint: NULL
+        origin: NULL
+    - children_tcache:
+        score: 1000
+        flag: random
+        pushflag: ./pwn/children_tcache/deploy/pushflag.sh
+        env: ./pwn/children_tcache/deploy/docker-compose.yml
+        attachment: NULL
+        writeup-cn: ./pwn/children_tcache/writeup.md
+        writeup-en: NULL
+        description-cn: NULL
+        description-en: NULL
+        tag: off-by-one
+        hint: NULL
+        origin: NULL

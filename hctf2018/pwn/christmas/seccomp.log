@@ -1,0 +1,2 @@
+Using architecture elf64-x86-64
+prctl(PR_SET_NO_NEW_PRIVS)
